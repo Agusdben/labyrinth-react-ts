@@ -11,17 +11,18 @@ interface Props {
 }
 
 const Game = ({ width, height }: Props) => {
-  const { canvasRef, handlePlayerMove } = useGame({ width, height })
+  const { canvasRef, level, handlePlayerMove } = useGame({ width, height })
 
   const arrowColor = '#a1a1a1'
 
   return (
     <section className='m-auto flex flex-col gap-4'>
+      <h2>Level: {level + 1}</h2>
       <canvas
         ref={canvasRef}
         width={width}
         height={height}
-        className={`w-[${width}px] h-[${height}px]`}
+        className={`w-[${width}px] h-[${height}px] md:scale-150`}
       />
       <div className='flex flex-col items-center [&_button]:w-16'>
         <button onClick={() => handlePlayerMove(PlayerMoveDirections.up)}>

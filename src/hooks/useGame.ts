@@ -1,203 +1,124 @@
 import { useCallback, useEffect, useReducer, useRef } from 'react'
-import levels from '../constants/levels'
+import { gameReducer } from '../reducers/GameReducer/gameReducer'
+import INITIAL_STATE from '../reducers/GameReducer/initial_state'
+import LEVELS from '../constants/levels'
 import {
   DrawParams,
+  GameState,
   LabyrinthPieces,
   PlayerMoveDirections
 } from '../types/index'
+
 interface Props {
   width: number
   height: number
 }
-
-interface GameState {
-  context: CanvasRenderingContext2D | null
-  level: number
-  board: { width: number; height: number }
-  cellDimension: { width: number; height: number }
-  player: { width: number; height: number; color: string; x: number; y: number }
-  labyrinth: {
-    cols: number
-    rows: number
-    map: Array<Array<number>>
-    wallColor: string
-    pathColor: string
-  }
-  loading: boolean
-}
-
-type GAME_ACTIONS =
-  | { type: 'reset' }
-  | { type: 'set_board'; payload: GameState['board'] }
-  | { type: 'set_player'; payload: GameState['player'] }
-  | { type: 'set_labyrinth'; payload: GameState['labyrinth'] }
-  | { type: 'set_context'; payload: GameState['context'] }
-  | { type: 'set_loading'; payload: GameState['loading'] }
-
-const gameReducer = (state: GameState, action: GAME_ACTIONS) => {
-  switch (action.type) {
-    case 'reset':
-      return {
-        ...INITIAL_STATE
-      }
-    case 'set_labyrinth':
-      return {
-        ...state,
-        labyrinth: action.payload
-      }
-    case 'set_loading':
-      return {
-        ...state,
-        loading: action.payload
-      }
-    case 'set_board':
-      return {
-        ...state,
-        board: action.payload
-      }
-    case 'set_context':
-      return {
-        ...state,
-        context: action.payload
-      }
-    case 'set_player':
-      return {
-        ...state,
-        player: action.payload
-      }
-    default:
-      return state
-  }
-}
-
-const INITIAL_STATE: GameState = {
-  context: null,
-  level: 1,
-  board: { width: 0, height: 0 },
-  cellDimension: { width: 0, height: 0 },
-  player: {
-    width: 0,
-    height: 0,
-    color: '#00f',
-    x: levels[1].playerSpawn.x,
-    y: levels[1].playerSpawn.y
-  },
-  labyrinth: {
-    cols: levels[1].map[0].length,
-    rows: levels[1].map.length,
-    map: [...levels[1].map],
-    wallColor: '#000',
-    pathColor: '#fa0'
-  },
-  loading: true
-}
-
 const useGame = ({ width, height }: Props) => {
   const [gameState, dispath] = useReducer(gameReducer, INITIAL_STATE)
 
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
-  const drawWall = useCallback(
-    ({ x, y, cellDimension }: DrawParams) => {
-      const { labyrinth, context } = gameState
-      if (!context) return
-      context.fillStyle = labyrinth.wallColor
+  const drawWall = ({ x, y, cellDimension }: DrawParams) => {
+    const { labyrinth, context } = gameState
+    if (!context) return
+    context.fillStyle = labyrinth.wallColor
 
-      context.fillRect(
-        cellDimension.width * x,
-        cellDimension.height * y,
-        cellDimension.width,
-        cellDimension.height
-      )
+    context.fillRect(
+      cellDimension.width * x,
+      cellDimension.height * y,
+      cellDimension.width,
+      cellDimension.height
+    )
 
-      // 3D effect
-      context.fillStyle = '#555'
-      context.fillRect(
-        cellDimension.width * x,
-        cellDimension.height * y,
-        cellDimension.width / 2,
-        cellDimension.height / 2
-      )
-    },
-    [gameState.labyrinth, gameState.context]
-  )
+    // 3D effect
+    context.fillStyle = '#555'
+    context.fillRect(
+      cellDimension.width * x,
+      cellDimension.height * y,
+      cellDimension.width / 2,
+      cellDimension.height / 2
+    )
+  }
 
-  const drawPath = useCallback(
-    ({ x, y, cellDimension }: DrawParams) => {
-      const { labyrinth, context } = gameState
-      if (!context) return
+  const drawPath = ({ x, y, cellDimension }: DrawParams) => {
+    const { labyrinth, context } = gameState
+    if (!context) return
 
-      context.fillStyle = labyrinth.pathColor
-      context.fillRect(
-        cellDimension.width * x,
-        cellDimension.height * y,
-        cellDimension.width,
-        cellDimension.height
-      )
-    },
-    [gameState.labyrinth, gameState.context]
-  )
+    context.fillStyle = labyrinth.pathColor
+    context.fillRect(
+      cellDimension.width * x,
+      cellDimension.height * y,
+      cellDimension.width,
+      cellDimension.height
+    )
+  }
 
-  const drawPlayer = useCallback(
-    ({ x, y, cellDimension }: DrawParams) => {
-      const { labyrinth, context, player } = gameState
-      if (!context) return
-      // path color, becouse player is half width and half height of cellDimension
-      context.fillStyle = labyrinth.pathColor
-      context.fillRect(
-        cellDimension.width * x,
-        cellDimension.width * y,
-        cellDimension.width,
-        cellDimension.height
-      )
+  const drawExit = ({ x, y, cellDimension }: DrawParams) => {
+    const { labyrinth, context } = gameState
+    if (!context) return
 
-      context.fillStyle = player.color
-      const playerWidth = cellDimension.width / 2
-      const playerHeight = cellDimension.height / 2
+    context.fillStyle = '#f00'
+    context.fillRect(
+      cellDimension.width * x,
+      cellDimension.height * y,
+      cellDimension.width,
+      cellDimension.height
+    )
+  }
 
-      // offset becose we need center player in cell
-      const offset = {
-        x: (cellDimension.width - playerWidth) / 2,
-        y: (cellDimension.height - playerHeight) / 2
-      }
+  const drawPlayer = ({ x, y, cellDimension }: DrawParams) => {
+    const { labyrinth, context, player } = gameState
+    if (!context) return
+    // path color, becouse player is half width and half height of cellDimension
+    context.fillStyle = labyrinth.pathColor
+    context.fillRect(
+      cellDimension.width * x,
+      cellDimension.width * y,
+      cellDimension.width,
+      cellDimension.height
+    )
 
-      const playerX = cellDimension.width * x + offset.x
-      const playerY = cellDimension.height * y + offset.y
+    context.fillStyle = player.color
+    const playerWidth = cellDimension.width / 2
+    const playerHeight = cellDimension.height / 2
 
-      context.fillRect(playerX, playerY, playerWidth, playerHeight)
-    },
-    [gameState.labyrinth, gameState.context]
-  )
-
-  const handleDrawLevel = useCallback(() => {
-    const { labyrinth, board } = gameState
-    const { map, rows, cols } = labyrinth
-    const { width: boardWidth, height: boardHeight } = board
-
-    const cellDimension = {
-      width: boardWidth / labyrinth.cols,
-      height: boardHeight / labyrinth.rows
+    // offset becose we need center player in cell
+    const offset = {
+      x: (cellDimension.width - playerWidth) / 2,
+      y: (cellDimension.height - playerHeight) / 2
     }
 
+    const playerX = cellDimension.width * x + offset.x
+    const playerY = cellDimension.height * y + offset.y
+
+    context.fillRect(playerX, playerY, playerWidth, playerHeight)
+  }
+
+  const handleDrawLevel = () => {
+    const { labyrinth, cell } = gameState
+    const { map, rows, cols } = labyrinth
+    console.log({ cell })
     for (let row = 0; row < rows; row += 1) {
       for (let col = 0; col < cols; col += 1) {
         switch (map[row][col]) {
           case LabyrinthPieces.wall:
-            drawWall({ x: col, y: row, cellDimension })
+            drawWall({ x: col, y: row, cellDimension: cell })
             continue
           case LabyrinthPieces.path:
-            drawPath({ x: col, y: row, cellDimension })
+            drawPath({ x: col, y: row, cellDimension: cell })
             continue
           case LabyrinthPieces.player:
-            drawPlayer({ x: col, y: row, cellDimension })
+            drawPlayer({ x: col, y: row, cellDimension: cell })
             continue
+          case LabyrinthPieces.exit:
+            drawExit({ x: col, y: row, cellDimension: cell })
         }
       }
     }
-  }, [gameState.labyrinth, gameState.context])
+  }
 
-  const playerMoveUp = useCallback(() => {
-    const { player, labyrinth } = gameState
+  const playerMoveUp = () => {
+    const { player, labyrinth, cell } = gameState
     const { map } = labyrinth
     const { x: playerX, y: playerY } = player
 
@@ -212,12 +133,14 @@ const useGame = ({ width, height }: Props) => {
 
     map[playerY][playerX] = LabyrinthPieces.path
     map[nextYpostion][playerX] = LabyrinthPieces.player
-    dispath({ type: 'set_player', payload: newPlayer })
-    handleDrawLevel()
-  }, [gameState.player, gameState.loading])
 
-  const playerMoveLeft = useCallback(() => {
-    const { player, labyrinth } = gameState
+    dispath({ type: 'set_player', payload: newPlayer })
+    drawPath({ x: playerX, y: playerY, cellDimension: cell })
+    drawPlayer({ x: playerX, y: nextYpostion, cellDimension: cell })
+  }
+
+  const playerMoveLeft = () => {
+    const { player, labyrinth, cell } = gameState
     const { map } = labyrinth
     const { x: playerX, y: playerY } = player
 
@@ -234,11 +157,12 @@ const useGame = ({ width, height }: Props) => {
     }
 
     dispath({ type: 'set_player', payload: newPlayer })
-    handleDrawLevel()
-  }, [gameState.player, gameState.loading])
+    drawPath({ x: playerX, y: playerY, cellDimension: cell })
+    drawPlayer({ x: nextXposition, y: playerY, cellDimension: cell })
+  }
 
-  const playerMoveDown = useCallback(() => {
-    const { player, labyrinth } = gameState
+  const playerMoveDown = () => {
+    const { player, labyrinth, cell } = gameState
     const { map } = labyrinth
     const { x: playerX, y: playerY } = player
 
@@ -254,11 +178,12 @@ const useGame = ({ width, height }: Props) => {
     map[playerY][playerX] = LabyrinthPieces.path
     map[nextYpostion][playerX] = LabyrinthPieces.player
     dispath({ type: 'set_player', payload: newPlayer })
-    handleDrawLevel()
-  }, [gameState.player, gameState.loading])
+    drawPath({ x: playerX, y: playerY, cellDimension: cell })
+    drawPlayer({ x: playerX, y: nextYpostion, cellDimension: cell })
+  }
 
-  const playerMoveRight = useCallback(() => {
-    const { player, labyrinth } = gameState
+  const playerMoveRight = () => {
+    const { player, labyrinth, cell } = gameState
     const { map } = labyrinth
     const { x: playerX, y: playerY } = player
 
@@ -275,57 +200,125 @@ const useGame = ({ width, height }: Props) => {
     }
 
     dispath({ type: 'set_player', payload: newPlayer })
-    handleDrawLevel()
-  }, [gameState.player, gameState.loading])
+    drawPath({ x: playerX, y: playerY, cellDimension: cell })
+    drawPlayer({ x: nextXposition, y: playerY, cellDimension: cell })
+  }
 
-  const handlePlayerMove = useCallback(
-    (direction: PlayerMoveDirections) => {
-      console.log({ direction })
-      switch (direction) {
-        case PlayerMoveDirections.up:
-          playerMoveUp()
-          break
-        case PlayerMoveDirections.left:
-          playerMoveLeft()
-          break
+  const handlePlayerMove = (direction: PlayerMoveDirections) => {
+    console.log({ direction })
+    switch (direction) {
+      case PlayerMoveDirections.up:
+        playerMoveUp()
+        break
+      case PlayerMoveDirections.left:
+        playerMoveLeft()
+        break
 
-        case PlayerMoveDirections.right:
-          playerMoveRight()
-          break
+      case PlayerMoveDirections.right:
+        playerMoveRight()
+        break
 
-        case PlayerMoveDirections.down:
-          playerMoveDown()
-          break
+      case PlayerMoveDirections.down:
+        playerMoveDown()
+        break
+    }
+  }
+
+  const setCellDimension = () => {
+    dispath({
+      type: 'set_cell',
+      payload: {
+        width: gameState.board.width / gameState.labyrinth.cols,
+        height: gameState.board.height / gameState.labyrinth.rows
       }
-    },
-    [gameState.player, gameState.loading]
-  )
+    })
+  }
 
   useEffect(() => {
     if (!canvasRef.current) return
     const context = canvasRef.current.getContext('2d')
     dispath({ type: 'set_context', payload: context })
     dispath({ type: 'set_board', payload: { width, height } })
+    setCellDimension()
     dispath({ type: 'set_loading', payload: false })
   }, [canvasRef.current])
 
   useEffect(() => {
     if (!gameState.context) return
     handleDrawLevel()
-  }, [gameState.loading])
+  }, [gameState.loading, gameState.cell, gameState.labyrinth])
 
   useEffect(() => {
-    const handleKeyUp = (evt: KeyboardEvent) => {}
+    const handleKeyDown = (evt: KeyboardEvent) => {
+      switch (evt.key) {
+        case PlayerMoveDirections.up:
+          handlePlayerMove(PlayerMoveDirections.up)
+          break
+        case PlayerMoveDirections.down:
+          handlePlayerMove(PlayerMoveDirections.down)
+          break
+        case PlayerMoveDirections.left:
+          handlePlayerMove(PlayerMoveDirections.left)
+          break
+        case PlayerMoveDirections.right:
+          handlePlayerMove(PlayerMoveDirections.right)
+          break
+      }
+    }
 
-    window.addEventListener('keyup', handleKeyUp)
+    window.addEventListener('keydown', handleKeyDown)
 
     return () => {
-      window.removeEventListener('keyup', handleKeyUp)
+      window.removeEventListener('keydown', handleKeyDown)
     }
-  }, [gameState.loading])
+  }, [gameState.player, gameState.cell])
+
+  const setNewLabyrinth = (level: number) => {
+    const { labyrinth, player } = gameState
+    const nextLevel = { ...LEVELS[level] }
+
+    const nextLabyrinth: GameState['labyrinth'] = {
+      ...labyrinth,
+      cols: nextLevel.map[0].length,
+      rows: nextLevel.map.length,
+      map: nextLevel.map,
+      exit: nextLevel.exit
+    }
+
+    const newPlayer: GameState['player'] = {
+      ...player,
+      x: nextLevel.playerSpawn.x,
+      y: nextLevel.playerSpawn.y
+    }
+
+    dispath({ type: 'set_labyrinth', payload: nextLabyrinth })
+    dispath({ type: 'set_player', payload: newPlayer })
+  }
+
+  const setNextLevel = () => {
+    const { level } = gameState
+    const numberOfLeves = LEVELS.length
+    const nextLevel = level + 1
+    if (nextLevel >= numberOfLeves) return
+    dispath({ type: 'increase_level', payload: level })
+    setNewLabyrinth(nextLevel)
+  }
+
+  const isPlayerInExitPosition = () => {
+    const { player, labyrinth } = gameState
+    const { exit } = labyrinth
+    return player.x === exit.x && player.y === exit.y
+  }
+
+  useEffect(() => {
+    const isLevelCompleted = isPlayerInExitPosition()
+    if (!isLevelCompleted) return
+    setNextLevel()
+  }, [gameState.player])
 
   return {
     canvasRef,
+    level: gameState.level,
     handlePlayerMove
   }
 }
