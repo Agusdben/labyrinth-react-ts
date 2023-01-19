@@ -1,26 +1,30 @@
-import LEVELS from '../../constants/levels'
-import { GameState } from '../../types'
+import { GameState, Windows } from '../../types'
 
 const INITIAL_STATE: GameState = {
   context: null,
-  level: 0,
+  level: -1,
+  window: Windows.menu,
   board: { width: 0, height: 0 },
   cell: { width: 0, height: 0 },
   player: {
     width: 0,
     height: 0,
     color: '#00f',
-    x: LEVELS[0].playerSpawn.x,
-    y: LEVELS[0].playerSpawn.y
+    x: 0,
+    y: 0,
+    offset: { x: 0, y: 0 }
   },
+
   labyrinth: {
-    cols: LEVELS[0].map[0].length,
-    rows: LEVELS[0].map.length,
-    map: [...LEVELS[0].map],
-    exit: LEVELS[0].exit,
+    cols: 0,
+    rows: 0,
+    map: [],
+    exit: { x: 0, y: 0 },
+    playerSpawn: { x: 0, y: 0 },
     wallColor: '#000',
     pathColor: '#fa0'
   },
+
   loading: true
 }
 

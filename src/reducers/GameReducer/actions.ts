@@ -1,4 +1,4 @@
-import { GameState } from '../../types'
+import { GameState, Windows } from '../../types'
 
 export type GAME_ACTIONS =
   | { type: 'reset' }
@@ -8,4 +8,5 @@ export type GAME_ACTIONS =
   | { type: 'set_context'; payload: GameState['context'] }
   | { type: 'set_loading'; payload: GameState['loading'] }
   | { type: 'set_cell'; payload: GameState['cell'] }
-  | { type: 'increase_level'; payload: GameState['level'] }
+  | { type: 'set_window'; payload: Windows }
+  | { type: 'set_level'; payload: GameState['level'] }

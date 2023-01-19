@@ -38,10 +38,16 @@ export const gameReducer = (state: GameState, action: GAME_ACTIONS) => {
         ...state,
         cell: action.payload
       }
-    case 'increase_level':
+    case 'set_level': {
       return {
         ...state,
-        level: state.level + 1
+        level: action.payload
+      }
+    }
+    case 'set_window':
+      return {
+        ...state,
+        window: action.payload
       }
     default:
       return state

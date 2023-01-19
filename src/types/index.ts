@@ -5,12 +5,21 @@ export enum LabyrinthPieces {
   exit = 3
 }
 
+export enum Windows {
+  menu = 'Menu',
+  levels = 'Levels',
+  labyrinth = 'Scape'
+}
+
 export enum PlayerMoveDirections {
-  // arrows
   up = 'ArrowUp',
   down = 'ArrowDown',
   left = 'ArrowLeft',
   right = 'ArrowRight'
+}
+
+export enum LocalStorage {
+  savedGame = 'savedGame'
 }
 
 export interface ArrowSvgProps {
@@ -18,32 +27,43 @@ export interface ArrowSvgProps {
   stroke?: string
 }
 
+export interface Cords {
+  x: number
+  y: number
+}
+
+export interface Dimension {
+  width: number
+  height: number
+}
+
 export interface Level {
   level: number
-  playerSpawn: { x: number; y: number }
-  exit: { x: number; y: number }
+  playerSpawn: Cords
+  exit: Cords
   map: Array<Array<number>>
 }
 
-export interface DrawParams {
-  x: number
-  y: number
-  cellDimension: { width: number; height: number }
+export interface Player extends Dimension, Cords {
+  color: string
+  offset: Cords
 }
 
 export interface GameState {
   context: CanvasRenderingContext2D | null
   level: number
-  board: { width: number; height: number }
-  cell: { width: number; height: number }
-  player: { width: number; height: number; color: string; x: number; y: number }
+  window: Windows
+  board: Dimension
+  cell: Dimension
+  player: Player
   labyrinth: {
     cols: number
     rows: number
     map: Array<Array<number>>
-    exit: { x: number; y: number }
+    exit: Cords
     wallColor: string
     pathColor: string
+    playerSpawn: Cords
   }
   loading: boolean
 }

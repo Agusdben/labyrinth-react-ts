@@ -1,21 +1,24 @@
-import { useCallback, useEffect, useReducer, useRef } from 'react'
-import { gameReducer } from '../reducers/GameReducer/gameReducer'
-import INITIAL_STATE from '../reducers/GameReducer/initial_state'
+import { useContext, useEffect, useRef } from 'react'
 import LEVELS from '../constants/levels'
 import {
   DrawParams,
   GameState,
   LabyrinthPieces,
-  PlayerMoveDirections
+  PlayerMoveDirections,
+  Windows
 } from '../types/index'
+
+import { GameContext } from '../contexts/GameContext'
+import useWindows from './useWindows'
 
 interface Props {
   width: number
   height: number
 }
-const useGame = ({ width, height }: Props) => {
-  const [gameState, dispath] = useReducer(gameReducer, INITIAL_STATE)
 
+const useGame = ({ width, height }: Props) => {
+  const { gameState, dispatch } = useContext(GameContext)
+  const { window } = gameState
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
   const drawWall = ({ x, y, cellDimension }: DrawParams) => {
@@ -54,7 +57,7 @@ const useGame = ({ width, height }: Props) => {
   }
 
   const drawExit = ({ x, y, cellDimension }: DrawParams) => {
-    const { labyrinth, context } = gameState
+    const { context } = gameState
     if (!context) return
 
     context.fillStyle = '#f00'
@@ -67,16 +70,10 @@ const useGame = ({ width, height }: Props) => {
   }
 
   const drawPlayer = ({ x, y, cellDimension }: DrawParams) => {
-    const { labyrinth, context, player } = gameState
+    const { context, player } = gameState
     if (!context) return
-    // path color, becouse player is half width and half height of cellDimension
-    context.fillStyle = labyrinth.pathColor
-    context.fillRect(
-      cellDimension.width * x,
-      cellDimension.width * y,
-      cellDimension.width,
-      cellDimension.height
-    )
+    // drawPath becouse player is half width and half height of cellDimension
+    drawPath({ x, y, cellDimension })
 
     context.fillStyle = player.color
     const playerWidth = cellDimension.width / 2
@@ -97,7 +94,7 @@ const useGame = ({ width, height }: Props) => {
   const handleDrawLevel = () => {
     const { labyrinth, cell } = gameState
     const { map, rows, cols } = labyrinth
-    console.log({ cell })
+
     for (let row = 0; row < rows; row += 1) {
       for (let col = 0; col < cols; col += 1) {
         switch (map[row][col]) {
@@ -117,115 +114,8 @@ const useGame = ({ width, height }: Props) => {
     }
   }
 
-  const playerMoveUp = () => {
-    const { player, labyrinth, cell } = gameState
-    const { map } = labyrinth
-    const { x: playerX, y: playerY } = player
-
-    const nextYpostion = playerY - 1
-
-    if (map[nextYpostion][playerX] === LabyrinthPieces.wall) return
-
-    const newPlayer = {
-      ...player,
-      y: nextYpostion
-    }
-
-    map[playerY][playerX] = LabyrinthPieces.path
-    map[nextYpostion][playerX] = LabyrinthPieces.player
-
-    dispath({ type: 'set_player', payload: newPlayer })
-    drawPath({ x: playerX, y: playerY, cellDimension: cell })
-    drawPlayer({ x: playerX, y: nextYpostion, cellDimension: cell })
-  }
-
-  const playerMoveLeft = () => {
-    const { player, labyrinth, cell } = gameState
-    const { map } = labyrinth
-    const { x: playerX, y: playerY } = player
-
-    const nextXposition = playerX - 1
-
-    if (map[playerY][nextXposition] === LabyrinthPieces.wall) return
-
-    map[playerY][playerX] = LabyrinthPieces.path
-    map[playerY][nextXposition] = LabyrinthPieces.player
-
-    const newPlayer = {
-      ...player,
-      x: nextXposition
-    }
-
-    dispath({ type: 'set_player', payload: newPlayer })
-    drawPath({ x: playerX, y: playerY, cellDimension: cell })
-    drawPlayer({ x: nextXposition, y: playerY, cellDimension: cell })
-  }
-
-  const playerMoveDown = () => {
-    const { player, labyrinth, cell } = gameState
-    const { map } = labyrinth
-    const { x: playerX, y: playerY } = player
-
-    const nextYpostion = playerY + 1
-
-    if (map[nextYpostion][playerX] === LabyrinthPieces.wall) return
-
-    const newPlayer = {
-      ...player,
-      y: nextYpostion
-    }
-
-    map[playerY][playerX] = LabyrinthPieces.path
-    map[nextYpostion][playerX] = LabyrinthPieces.player
-    dispath({ type: 'set_player', payload: newPlayer })
-    drawPath({ x: playerX, y: playerY, cellDimension: cell })
-    drawPlayer({ x: playerX, y: nextYpostion, cellDimension: cell })
-  }
-
-  const playerMoveRight = () => {
-    const { player, labyrinth, cell } = gameState
-    const { map } = labyrinth
-    const { x: playerX, y: playerY } = player
-
-    const nextXposition = playerX + 1
-
-    if (map[playerY][nextXposition] === LabyrinthPieces.wall) return
-
-    map[playerY][playerX] = LabyrinthPieces.path
-    map[playerY][nextXposition] = LabyrinthPieces.player
-
-    const newPlayer = {
-      ...player,
-      x: nextXposition
-    }
-
-    dispath({ type: 'set_player', payload: newPlayer })
-    drawPath({ x: playerX, y: playerY, cellDimension: cell })
-    drawPlayer({ x: nextXposition, y: playerY, cellDimension: cell })
-  }
-
-  const handlePlayerMove = (direction: PlayerMoveDirections) => {
-    console.log({ direction })
-    switch (direction) {
-      case PlayerMoveDirections.up:
-        playerMoveUp()
-        break
-      case PlayerMoveDirections.left:
-        playerMoveLeft()
-        break
-
-      case PlayerMoveDirections.right:
-        playerMoveRight()
-        break
-
-      case PlayerMoveDirections.down:
-        playerMoveDown()
-        break
-    }
-  }
-
   const setCellDimension = () => {
-    dispath({
+    dispatch({
       type: 'set_cell',
       payload: {
         width: gameState.board.width / gameState.labyrinth.cols,
@@ -234,21 +124,28 @@ const useGame = ({ width, height }: Props) => {
     })
   }
 
+  const drawLabyrinthFloor = () => {
+    const { board, context } = gameState
+    context?.fillRect(0, 0, board.width, board.height)
+  }
+
   useEffect(() => {
     if (!canvasRef.current) return
     const context = canvasRef.current.getContext('2d')
-    dispath({ type: 'set_context', payload: context })
-    dispath({ type: 'set_board', payload: { width, height } })
+    dispatch({ type: 'set_context', payload: context })
+    dispatch({ type: 'set_board', payload: { width, height } })
     setCellDimension()
-    dispath({ type: 'set_loading', payload: false })
+    drawLabyrinthFloor()
+    dispatch({ type: 'set_loading', payload: false })
   }, [canvasRef.current])
 
   useEffect(() => {
-    if (!gameState.context) return
+    if (gameState.window !== Windows.playing) return
     handleDrawLevel()
-  }, [gameState.loading, gameState.cell, gameState.labyrinth])
+  }, [gameState.window, gameState])
 
   useEffect(() => {
+    if (gameState.window !== Windows.playing) return
     const handleKeyDown = (evt: KeyboardEvent) => {
       switch (evt.key) {
         case PlayerMoveDirections.up:
@@ -271,7 +168,7 @@ const useGame = ({ width, height }: Props) => {
     return () => {
       window.removeEventListener('keydown', handleKeyDown)
     }
-  }, [gameState.player, gameState.cell])
+  }, [gameState.player, gameState.cell, gameState.window])
 
   const setNewLabyrinth = (level: number) => {
     const { labyrinth, player } = gameState
@@ -291,8 +188,8 @@ const useGame = ({ width, height }: Props) => {
       y: nextLevel.playerSpawn.y
     }
 
-    dispath({ type: 'set_labyrinth', payload: nextLabyrinth })
-    dispath({ type: 'set_player', payload: newPlayer })
+    dispatch({ type: 'set_labyrinth', payload: nextLabyrinth })
+    dispatch({ type: 'set_player', payload: newPlayer })
   }
 
   const setNextLevel = () => {
@@ -300,7 +197,7 @@ const useGame = ({ width, height }: Props) => {
     const numberOfLeves = LEVELS.length
     const nextLevel = level + 1
     if (nextLevel >= numberOfLeves) return
-    dispath({ type: 'increase_level', payload: level })
+    dispatch({ type: 'increase_level', payload: level })
     setNewLabyrinth(nextLevel)
   }
 
@@ -318,8 +215,8 @@ const useGame = ({ width, height }: Props) => {
 
   return {
     canvasRef,
-    level: gameState.level,
-    handlePlayerMove
+    window,
+    level: gameState.level
   }
 }
 

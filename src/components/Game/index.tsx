@@ -1,45 +1,24 @@
-import useGame from '../../hooks/useGame'
-import { PlayerMoveDirections } from '../../types'
-import ArrowDown from '../ArrowDown'
-import ArrowLeft from '../ArrowLeft'
-import ArrowRight from '../ArrowRight'
-import ArrowUp from '../ArrowUp'
+import useWindows from '../../hooks/useWindows'
+import { Dimension, Windows } from '../../types'
+import Labyrinth from '../Labyrinth'
+import Levels from '../Levels'
+import Menu from '../Menu'
 
-interface Props {
-  width: number
-  height: number
-}
+const Game = ({ width, height }: Dimension) => {
+  const { window } = useWindows()
 
-const Game = ({ width, height }: Props) => {
-  const { canvasRef, level, handlePlayerMove } = useGame({ width, height })
-
-  const arrowColor = '#a1a1a1'
+  const WINDOWS = {
+    [Windows.menu]: <Menu />,
+    [Windows.levels]: <Levels />,
+    [Windows.labyrinth]: <Labyrinth width={width} height={height} />
+  }
 
   return (
-    <section className='m-auto flex flex-col gap-4'>
-      <h2>Level: {level + 1}</h2>
-      <canvas
-        ref={canvasRef}
-        width={width}
-        height={height}
-        className={`w-[${width}px] h-[${height}px] md:scale-150`}
-      />
-      <div className='flex flex-col items-center [&_button]:w-16'>
-        <button onClick={() => handlePlayerMove(PlayerMoveDirections.up)}>
-          <ArrowUp stroke={arrowColor} />
-        </button>
-        <div>
-          <button onClick={() => handlePlayerMove(PlayerMoveDirections.left)}>
-            <ArrowLeft stroke={arrowColor} />
-          </button>
-          <button onClick={() => handlePlayerMove(PlayerMoveDirections.down)}>
-            <ArrowDown stroke={arrowColor} />
-          </button>
-          <button onClick={() => handlePlayerMove(PlayerMoveDirections.right)}>
-            <ArrowRight stroke={arrowColor} />
-          </button>
-        </div>
-      </div>
+    <section className='m-auto'>
+      <h2 className='text-center'>{window}</h2>
+      <article style={{ width, height }} className='flex'>
+        {WINDOWS[window]}
+      </article>
     </section>
   )
 }
