@@ -8,7 +8,7 @@ export enum LabyrinthPieces {
 export enum Windows {
   menu = 'Menu',
   levels = 'Levels',
-  labyrinth = 'Scape'
+  labyrinth = 'Labyrinth'
 }
 
 export enum PlayerMoveDirections {
@@ -63,6 +63,7 @@ export interface GameState {
     exit: Cords
     wallColor: string
     pathColor: string
+    exitColor: string
     playerSpawn: Cords
   }
   loading: boolean

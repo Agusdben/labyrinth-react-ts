@@ -8,17 +8,15 @@ const Game = ({ width, height }: Dimension) => {
   const { window } = useWindows()
 
   const WINDOWS = {
-    [Windows.menu]: <Menu />,
-    [Windows.levels]: <Levels />,
+    [Windows.menu]: <Menu width={width} height={height} />,
+    [Windows.levels]: <Levels width={width} height={height} />,
     [Windows.labyrinth]: <Labyrinth width={width} height={height} />
   }
 
   return (
     <section className='m-auto'>
       <h2 className='text-center'>{window}</h2>
-      <article style={{ width, height }} className='flex'>
-        {WINDOWS[window]}
-      </article>
+      <article className='flex'>{WINDOWS[window]}</article>
     </section>
   )
 }

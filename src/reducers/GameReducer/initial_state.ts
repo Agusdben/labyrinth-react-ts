@@ -22,7 +22,8 @@ const INITIAL_STATE: GameState = {
     exit: { x: 0, y: 0 },
     playerSpawn: { x: 0, y: 0 },
     wallColor: '#000',
-    pathColor: '#fa0'
+    pathColor: '#fa0',
+    exitColor: '#f00'
   },
 
   loading: true

@@ -35,13 +35,12 @@ const useLabyrinth = ({ width, height }: Dimension) => {
     const newLevel: Level = LEVELS[level] // minus one becouse array first index is 0 and first level is 1
 
     const newLabyrinth: GameState['labyrinth'] = {
+      ...labyrinth,
       cols: newLevel.map[0].length,
       rows: newLevel.map.length,
       exit: newLevel.exit,
       map: newLevel.map,
-      playerSpawn: newLevel.playerSpawn,
-      pathColor: labyrinth.pathColor,
-      wallColor: labyrinth.wallColor
+      playerSpawn: newLevel.playerSpawn
     }
 
     dispatch({ type: 'set_labyrinth', payload: newLabyrinth })
@@ -64,8 +63,8 @@ const useLabyrinth = ({ width, height }: Dimension) => {
 
   const drawExit = (context: CanvasRenderingContext2D) => {
     const { cell } = gameState
-    const { exit } = labyrinth
-    context.fillStyle = '#f00'
+    const { exit, exitColor } = labyrinth
+    context.fillStyle = exitColor
     context.fillRect(
       exit.x * cell.width,
       exit.y * cell.height,
@@ -117,7 +116,8 @@ const useLabyrinth = ({ width, height }: Dimension) => {
     gameState.cell,
     gameState.labyrinth,
     gameState.level,
-    gameState.context
+    gameState.context,
+    gameState.player
   ])
 
   return {

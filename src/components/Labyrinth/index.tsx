@@ -1,7 +1,8 @@
 import useLabyrinth from '../../hooks/useLabyrinth'
 import usePlayer from '../../hooks/usePlayer'
-import { Dimension, Windows } from '../../types'
+import { Dimension } from '../../types'
 import GameControls from '../GameControls/intex'
+import { LabyrinthLeyend } from '../LabyrinthLeyend'
 
 const Labyrinth = ({ width, height }: Dimension) => {
   const { canvasRef } = useLabyrinth({ width, height })
@@ -16,6 +17,7 @@ const Labyrinth = ({ width, height }: Dimension) => {
         height={height}
         className={`w-[${width}px] h-[${height}px]`}
       />
+      <LabyrinthLeyend />
       <GameControls handlePlayerMove={handlePlayerMove} />
     </div>
   )

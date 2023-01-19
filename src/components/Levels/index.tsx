@@ -2,8 +2,9 @@ import { useState } from 'react'
 import LEVELS from '../../constants/levels'
 import useLevel from '../../hooks/useLevel'
 import useWindows from '../../hooks/useWindows'
+import { Dimension } from '../../types'
 
-const Levels = () => {
+const Levels = ({ width, height }: Dimension) => {
   const { setLabyrinthWindow } = useWindows()
   const { setLevel } = useLevel()
   const [levelSelected, setLevelSelected] = useState<number>(0)
@@ -18,7 +19,10 @@ const Levels = () => {
   }
 
   return (
-    <div className='flex flex-col gap-2 h-full w-full'>
+    <div
+      className='flex flex-col gap-2 h-full w-full'
+      style={{ width, height }}
+    >
       <ul className='p-3 flex-1 grid grid-cols-4 gap-4 overflow-y-auto'>
         {LEVELS.map((l, index) => (
           <li className='grid aspect-square' key={l.level}>
