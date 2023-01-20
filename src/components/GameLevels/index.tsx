@@ -4,7 +4,7 @@ import useLevel from '../../hooks/useLevel'
 import useWindows from '../../hooks/useWindows'
 import { Dimension } from '../../types'
 
-const Levels = ({ width, height }: Dimension) => {
+const GameLevels = ({ width, height }: Dimension) => {
   const { setLabyrinthWindow } = useWindows()
   const { setLevel } = useLevel()
   const [levelSelected, setLevelSelected] = useState<number>(0)
@@ -49,4 +49,4 @@ const Levels = ({ width, height }: Dimension) => {
   )
 }
 
-export default Levels
+export default GameLevels

@@ -8,7 +8,8 @@ export enum LabyrinthPieces {
 export enum Windows {
   menu = 'Menu',
   levels = 'Levels',
-  labyrinth = 'Labyrinth'
+  labyrinth = 'Labyrinth',
+  options = 'Options'
 }
 
 export enum PlayerMoveDirections {
@@ -49,10 +50,15 @@ export interface Player extends Dimension, Cords {
   offset: Cords
 }
 
+export interface Window {
+  actual: Windows
+  history: Array<Windows>
+}
+
 export interface GameState {
   context: CanvasRenderingContext2D | null
   level: number
-  window: Windows
+  window: Window
   board: Dimension
   cell: Dimension
   player: Player

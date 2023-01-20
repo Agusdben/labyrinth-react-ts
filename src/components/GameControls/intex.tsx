@@ -12,7 +12,7 @@ const GameControls = ({ handlePlayerMove }: Props) => {
   const arrowColor = '#a1a1a1'
 
   return (
-    <div className='flex flex-col items-center [&_button]:w-16'>
+    <div className='flex flex-col items-center [&_button]:w-12 lg:hidden'>
       <button onClick={() => handlePlayerMove(PlayerMoveDirections.up)}>
         <ArrowUp stroke={arrowColor} />
       </button>

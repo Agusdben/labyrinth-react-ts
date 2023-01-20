@@ -1,23 +1,60 @@
-import { useContext, useState } from 'react'
+import { useContext } from 'react'
 import { GameContext } from '../contexts/GameContext'
-import { Windows } from '../types'
+import { GameState, Windows } from '../types'
 
 const useWindows = () => {
   const { dispatch, gameState } = useContext(GameContext)
-  const [windowsHistory, setWindowsHistory] = useState<Array<string>>([])
+
+  const getNewWindowObject = (nextWindow: Windows): GameState['window'] => {
+    const newWindow: GameState['window'] = {
+      actual: nextWindow,
+      history: [...gameState.window.history, nextWindow]
+    }
+    return newWindow
+  }
+
+  const handlePrevWindow = () => {
+    const window = { ...gameState.window }
+    const { history } = window
+    if (history.length < 2) return
+    history.pop()
+    const prevWindow = history.pop()
+    if (!prevWindow) return
+    const newWindow = getNewWindowObject(prevWindow)
+    dispatch({
+      type: 'set_window',
+      payload: newWindow
+    })
+  }
 
   const setLevelsWindow = () => {
-    dispatch({ type: 'set_window', payload: Windows.levels })
+    dispatch({
+      type: 'set_window',
+      payload: getNewWindowObject(Windows.levels)
+    })
   }
 
   const setLabyrinthWindow = () => {
-    dispatch({ type: 'set_window', payload: Windows.labyrinth })
+    dispatch({
+      type: 'set_window',
+      payload: getNewWindowObject(Windows.labyrinth)
+    })
+  }
+
+  const setOptionsWindow = () => {
+    dispatch({
+      type: 'set_window',
+      payload: getNewWindowObject(Windows.options)
+    })
   }
 
   return {
-    window: gameState.window,
+    window: gameState.window.actual,
+    windowsHistory: gameState.window.history,
     setLevelsWindow,
-    setLabyrinthWindow
+    setLabyrinthWindow,
+    setOptionsWindow,
+    handlePrevWindow
   }
 }
 

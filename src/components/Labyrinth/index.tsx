@@ -1,11 +1,11 @@
-import useLabyrinth from '../../hooks/useLabyrinth'
+import useGame from '../../hooks/useGame'
 import usePlayer from '../../hooks/usePlayer'
 import { Dimension } from '../../types'
 import GameControls from '../GameControls/intex'
 import { LabyrinthLeyend } from '../LabyrinthLeyend'
 
 const Labyrinth = ({ width, height }: Dimension) => {
-  const { canvasRef } = useLabyrinth({ width, height })
+  const { canvasRef } = useGame({ width, height })
   const { handlePlayerMove } = usePlayer()
 
   return (

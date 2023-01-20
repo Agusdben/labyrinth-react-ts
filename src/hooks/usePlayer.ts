@@ -139,19 +139,10 @@ const usePlayer = () => {
     }
   }
 
-  useEffect(() => {
-    setPlayer()
-  }, [gameState.cell, gameState.labyrinth])
-
-  useEffect(() => {
-    if (gameState.loading) return
-    const { context } = gameState
-    if (!context) return
-    drawPlayer(context)
-  }, [gameState.loading, gameState.player, gameState.cell, gameState.context])
-
   return {
-    handlePlayerMove
+    handlePlayerMove,
+    setPlayer,
+    drawPlayer
   }
 }
 

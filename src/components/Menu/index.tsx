@@ -2,7 +2,7 @@ import useWindows from '../../hooks/useWindows'
 import { Dimension } from '../../types'
 
 const Menu = ({ width, height }: Dimension) => {
-  const { setLevelsWindow } = useWindows()
+  const { setLevelsWindow, setOptionsWindow } = useWindows()
 
   return (
     <div
@@ -19,6 +19,7 @@ const Menu = ({ width, height }: Dimension) => {
       <button
         className='border-current border-2 px-6 py-2 hover:text-zinc-900 hover:bg-zinc-200'
         type='button'
+        onClick={setOptionsWindow}
       >
         Options
       </button>
