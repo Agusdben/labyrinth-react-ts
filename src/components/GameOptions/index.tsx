@@ -1,4 +1,3 @@
-import usePlayer from '../../hooks/usePlayer'
 import useWindows from '../../hooks/useWindows'
 import { Dimension } from '../../types'
 import MenuButtons from '../MenuButtons'

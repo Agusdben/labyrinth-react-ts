@@ -15,10 +15,10 @@ const usePlayer = () => {
 
   const setPlayer = () => {
     const { cell, labyrinth } = gameState
-    const playerWidth = cell.width / 2
-    const playerHeight = cell.height / 2
+    const playerWidth = cell.width / 1.2
+    const playerHeight = cell.height / 1.2
 
-    // offset becose we need center player in cell
+    // offset because we need center player in cell
     const offset = {
       x: (cell.width - playerWidth) / 2,
       y: (cell.height - playerHeight) / 2
@@ -168,7 +168,7 @@ const usePlayer = () => {
     handlePlayerMove,
     setPlayer,
     drawPlayer,
-    player: gameState.player
+    player
   }
 }
 

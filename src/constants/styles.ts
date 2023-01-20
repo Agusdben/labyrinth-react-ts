@@ -3,3 +3,5 @@ export const LABYRINTH_STYLES = {
   pathColor: '#fa0',
   exitColor: '#f00'
 }
+
+export const PLAYER_STYLES = ['#542345', '#043453', '#f8aa', '#44fa']

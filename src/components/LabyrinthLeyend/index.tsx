@@ -1,13 +1,12 @@
-import { useContext } from 'react'
 import { LABYRINTH_STYLES } from '../../constants/styles'
-import { GameContext } from '../../contexts/GameContext'
+import useOptions from '../../hooks/useOptions'
+import usePlayer from '../../hooks/usePlayer'
 
 export const LabyrinthLeyend = () => {
-  const { gameState } = useContext(GameContext)
-  const { player } = gameState
+  const { playerOptions } = useOptions()
 
   const LEYEND = [
-    { key: 'Player', value: player.color },
+    { key: 'Player', value: playerOptions.color },
     { key: 'Exit', value: LABYRINTH_STYLES.exitColor },
     { key: 'Wall', value: LABYRINTH_STYLES.wallColor },
     { key: 'Path', value: LABYRINTH_STYLES.pathColor }

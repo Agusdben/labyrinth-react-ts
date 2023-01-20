@@ -6,6 +6,7 @@ import Menu from '../Menu'
 import Arrowback from '../ArrowBack'
 import GameOptions from '../GameOptions'
 import HowToPlay from '../HowToPlay'
+import ChangePlayerColor from '../ChangePlayerColor'
 
 const Game = ({ width, height }: Dimension) => {
   const { window, handlePrevWindow } = useWindows()
@@ -15,18 +16,23 @@ const Game = ({ width, height }: Dimension) => {
     [Windows.levels]: <Levels width={width} height={height} />,
     [Windows.labyrinth]: <Labyrinth width={width} height={height} />,
     [Windows.options]: <GameOptions width={width} height={height} />,
-    [Windows.how_to_play]: <HowToPlay width={width} height={height} />
+    [Windows.how_to_play]: <HowToPlay width={width} height={height} />,
+    [Windows.change_player_color]: (
+      <ChangePlayerColor width={width} height={height} />
+    )
   }
 
   return (
-    <section className='m-auto'>
-      <h2 className='text-center'>{window}</h2>
-      <article className='flex gap-2 opacity-80'>
-        <button type='button' onClick={handlePrevWindow}>
-          <Arrowback className='w-12' />
-        </button>
-      </article>
-      <article className='flex'>{WINDOWS[window]}</article>
+    <section className='m-auto flex flex-col gap-4 bg-zinc-800 p-4 rounded-md'>
+      <header className='flex gap-2 justify-between'>
+        <h2 className='text-center text-2xl'>{window}</h2>
+        {window !== Windows.menu ? (
+          <button type='button' onClick={handlePrevWindow}>
+            <Arrowback className='w-12' />
+          </button>
+        ) : null}
+      </header>
+      <article className='flex overflow-y-auto'>{WINDOWS[window]}</article>
     </section>
   )
 }
