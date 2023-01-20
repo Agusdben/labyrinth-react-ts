@@ -7,9 +7,10 @@ import Arrowback from '../ArrowBack'
 import GameOptions from '../GameOptions'
 import HowToPlay from '../HowToPlay'
 import ChangePlayerColor from '../ChangePlayerColor'
+import PrevWindowButton from '../PrevWindowButton'
 
 const Game = ({ width, height }: Dimension) => {
-  const { window, handlePrevWindow } = useWindows()
+  const { window } = useWindows()
 
   const WINDOWS: { [key: string]: JSX.Element } = {
     [Windows.menu]: <Menu width={width} height={height} />,
@@ -24,13 +25,9 @@ const Game = ({ width, height }: Dimension) => {
 
   return (
     <section className='m-auto flex flex-col gap-4 bg-zinc-800 p-4 rounded-md'>
-      <header className='flex gap-2 justify-between'>
+      <header className='flex gap-2 justify-between items-center'>
         <h2 className='text-center text-2xl'>{window}</h2>
-        {window !== Windows.menu ? (
-          <button type='button' onClick={handlePrevWindow}>
-            <Arrowback className='w-12' />
-          </button>
-        ) : null}
+        {window !== Windows.menu ? <PrevWindowButton /> : null}
       </header>
       <article className='flex overflow-y-auto'>{WINDOWS[window]}</article>
     </section>
