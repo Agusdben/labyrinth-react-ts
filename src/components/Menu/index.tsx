@@ -12,8 +12,8 @@ const Menu = () => {
       style={{ width: resolution.width, height: resolution.height }}
     >
       <MenuButtons value='Play!' onClick={setLevelsWindow} />
-      <MenuButtons value='How to play' onClick={setHowToPlayWindow} />
       <MenuButtons value='Options' onClick={setOptionsWindow} />
+      <MenuButtons value='How to play' onClick={setHowToPlayWindow} />
     </div>
   )
 }

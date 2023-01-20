@@ -11,6 +11,12 @@ export const optionsReducer = (state: Options, action: OPTIONS_ACTIONS) => {
     case 'set_player_color': {
       return { ...state, player: { color: action.payload } }
     }
+    case 'set_resolution': {
+      return {
+        ...state,
+        resolution: action.payload
+      }
+    }
     default:
       return {
         ...state

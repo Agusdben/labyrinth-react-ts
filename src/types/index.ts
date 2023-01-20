@@ -11,7 +11,8 @@ export enum Windows {
   labyrinth = 'Labyrinth',
   options = 'Options',
   how_to_play = 'How to play',
-  change_player_color = 'Change Player Color'
+  change_player_color = 'Change Player Color',
+  graphics = 'graphics'
 }
 
 export enum PlayerMoveDirections {

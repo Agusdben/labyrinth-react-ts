@@ -62,6 +62,13 @@ const useWindows = () => {
     })
   }
 
+  const setGraphicsWindow = () => {
+    dispatch({
+      type: 'set_window',
+      payload: getNewWindowObject(Windows.graphics)
+    })
+  }
+
   return {
     window: gameState.window.actual,
     windowsHistory: gameState.window.history,
@@ -70,7 +77,8 @@ const useWindows = () => {
     setOptionsWindow,
     handlePrevWindow,
     setChangePlayerColorWindow,
-    setHowToPlayWindow
+    setHowToPlayWindow,
+    setGraphicsWindow
   }
 }
 

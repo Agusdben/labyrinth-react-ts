@@ -8,6 +8,7 @@ import GameOptions from '../GameOptions'
 import HowToPlay from '../HowToPlay'
 import ChangePlayerColor from '../ChangePlayerColor'
 import PrevWindowButton from '../PrevWindowButton'
+import Graphics from '../Graphics'
 
 const Game = () => {
   const { window } = useWindows()
@@ -18,7 +19,8 @@ const Game = () => {
     [Windows.labyrinth]: <Labyrinth />,
     [Windows.options]: <GameOptions />,
     [Windows.how_to_play]: <HowToPlay />,
-    [Windows.change_player_color]: <ChangePlayerColor />
+    [Windows.change_player_color]: <ChangePlayerColor />,
+    [Windows.graphics]: <Graphics />
   }
 
   return (
