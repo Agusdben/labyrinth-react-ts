@@ -9,7 +9,9 @@ export enum Windows {
   menu = 'Menu',
   levels = 'Levels',
   labyrinth = 'Labyrinth',
-  options = 'Options'
+  options = 'Options',
+  how_to_play = 'How to play',
+  change_player_color = 'Change Player Color'
 }
 
 export enum PlayerMoveDirections {
@@ -55,6 +57,12 @@ export interface Window {
   history: Array<Windows>
 }
 
+export interface Options {
+  player: {
+    color: string
+  }
+}
+
 export interface GameState {
   context: CanvasRenderingContext2D | null
   level: number
@@ -67,9 +75,6 @@ export interface GameState {
     rows: number
     map: Array<Array<number>>
     exit: Cords
-    wallColor: string
-    pathColor: string
-    exitColor: string
     playerSpawn: Cords
   }
   loading: boolean

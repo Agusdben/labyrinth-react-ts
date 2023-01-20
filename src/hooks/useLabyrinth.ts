@@ -58,9 +58,9 @@ const useLabyrinth = () => {
 
   const drawWalls = (context: CanvasRenderingContext2D) => {
     const { cell } = gameState
-    const { map, rows, cols, wallColor } = labyrinth
+    const { map, rows, cols } = labyrinth
 
-    context.fillStyle = wallColor
+    context.fillStyle = LABYRINTH_STYLES.wallColor
 
     for (let row = 0; row < rows; row += 1) {
       for (let col = 0; col < cols; col += 1) {

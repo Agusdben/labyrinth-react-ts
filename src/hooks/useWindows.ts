@@ -48,13 +48,29 @@ const useWindows = () => {
     })
   }
 
+  const setChangePlayerColorWindow = () => {
+    dispatch({
+      type: 'set_window',
+      payload: getNewWindowObject(Windows.change_player_color)
+    })
+  }
+
+  const setHowToPlayWindow = () => {
+    dispatch({
+      type: 'set_window',
+      payload: getNewWindowObject(Windows.how_to_play)
+    })
+  }
+
   return {
     window: gameState.window.actual,
     windowsHistory: gameState.window.history,
     setLevelsWindow,
     setLabyrinthWindow,
     setOptionsWindow,
-    handlePrevWindow
+    handlePrevWindow,
+    setChangePlayerColorWindow,
+    setHowToPlayWindow
   }
 }
 

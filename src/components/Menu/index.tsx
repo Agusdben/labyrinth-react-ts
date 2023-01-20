@@ -1,28 +1,18 @@
 import useWindows from '../../hooks/useWindows'
 import { Dimension } from '../../types'
+import MenuButtons from '../MenuButtons'
 
 const Menu = ({ width, height }: Dimension) => {
-  const { setLevelsWindow, setOptionsWindow } = useWindows()
+  const { setLevelsWindow, setOptionsWindow, setHowToPlayWindow } = useWindows()
 
   return (
     <div
       className='flex flex-col gap-4 justify-center m-auto'
       style={{ width, height }}
     >
-      <button
-        className='border-current border-2 px-6 py-2 hover:text-zinc-900 hover:bg-zinc-200'
-        type='button'
-        onClick={setLevelsWindow}
-      >
-        Play!
-      </button>
-      <button
-        className='border-current border-2 px-6 py-2 hover:text-zinc-900 hover:bg-zinc-200'
-        type='button'
-        onClick={setOptionsWindow}
-      >
-        Options
-      </button>
+      <MenuButtons value='Play!' onClick={setLevelsWindow} />
+      <MenuButtons value='How to play' onClick={setHowToPlayWindow} />
+      <MenuButtons value='Options' onClick={setOptionsWindow} />
     </div>
   )
 }

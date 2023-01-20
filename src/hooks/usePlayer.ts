@@ -1,9 +1,16 @@
 import { useContext, useEffect } from 'react'
 import { GameContext } from '../contexts/GameContext'
-import { GameState, LabyrinthPieces, PlayerMoveDirections } from '../types'
+import {
+  Cords,
+  GameState,
+  LabyrinthPieces,
+  PlayerMoveDirections
+} from '../types'
+import useOptions from './useOptions'
 
 const usePlayer = () => {
   const { gameState, dispatch } = useContext(GameContext)
+  const { playerOptions } = useOptions()
   const { player } = gameState
 
   const setPlayer = () => {
@@ -28,10 +35,24 @@ const usePlayer = () => {
     dispatch({ type: 'set_player', payload: newPlayer })
   }
 
+  const isPlayerInsideBoard = ({ x, y }: Cords): boolean => {
+    const { board, cell } = gameState
+
+    const canvasX = x * cell.width
+    const canvasY = y * cell.height
+    console.log({ canvasX, canvasY })
+    return (
+      canvasX >= 0 &&
+      canvasY >= 0 &&
+      canvasX < board.width &&
+      canvasY < board.height
+    )
+  }
+
   const drawPlayer = (context: CanvasRenderingContext2D) => {
     const { cell } = gameState
 
-    context.fillStyle = player.color
+    context.fillStyle = playerOptions.color
 
     const playerX = cell.width * player.x + player.offset.x
     const playerY = cell.height * player.y + player.offset.y
@@ -48,7 +69,8 @@ const usePlayer = () => {
 
     const itsWallUp = map[nextYpostion][playerX] === LabyrinthPieces.wall
 
-    if (itsWallUp) return
+    if (itsWallUp || !isPlayerInsideBoard({ x: playerX, y: nextYpostion }))
+      return
 
     const newPlayer = {
       ...player,
@@ -62,13 +84,14 @@ const usePlayer = () => {
   }
 
   const playerMoveLeft = () => {
-    const { player, labyrinth, cell } = gameState
+    const { player, labyrinth } = gameState
     const { map } = labyrinth
     const { x: playerX, y: playerY } = player
 
     const nextXposition = playerX - 1
-
-    if (map[playerY][nextXposition] === LabyrinthPieces.wall) return
+    const itsWallLeft = map[playerY][nextXposition] === LabyrinthPieces.wall
+    if (itsWallLeft || !isPlayerInsideBoard({ x: nextXposition, y: playerY }))
+      return
 
     map[playerY][playerX] = LabyrinthPieces.path
     map[playerY][nextXposition] = LabyrinthPieces.player
@@ -87,8 +110,9 @@ const usePlayer = () => {
     const { x: playerX, y: playerY } = player
 
     const nextYpostion = playerY + 1
-
-    if (map[nextYpostion][playerX] === LabyrinthPieces.wall) return
+    const itsWallDown = map[nextYpostion][playerX] === LabyrinthPieces.wall
+    if (itsWallDown || !isPlayerInsideBoard({ x: playerX, y: nextYpostion }))
+      return
 
     const newPlayer = {
       ...player,
@@ -105,8 +129,9 @@ const usePlayer = () => {
     const { map } = labyrinth
 
     const nextXposition = player.x + 1
-
-    if (map[player.y][nextXposition] === LabyrinthPieces.wall) return
+    const itsWallRight = map[player.y][nextXposition] === LabyrinthPieces.wall
+    if (itsWallRight || !isPlayerInsideBoard({ x: nextXposition, y: player.y }))
+      return
 
     map[player.y][player.x] = LabyrinthPieces.path
     map[player.y][nextXposition] = LabyrinthPieces.player
@@ -142,7 +167,8 @@ const usePlayer = () => {
   return {
     handlePlayerMove,
     setPlayer,
-    drawPlayer
+    drawPlayer,
+    player: gameState.player
   }
 }
 

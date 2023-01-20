@@ -1,6 +1,6 @@
 import { GameState, Windows } from '../../types'
 
-const INITIAL_STATE: GameState = {
+const GAME_INITIAL_STATE: GameState = {
   context: null,
   level: -1,
   window: { actual: Windows.menu, history: [Windows.menu] },
@@ -20,13 +20,10 @@ const INITIAL_STATE: GameState = {
     rows: 0,
     map: [],
     exit: { x: 0, y: 0 },
-    playerSpawn: { x: 0, y: 0 },
-    wallColor: '#000',
-    pathColor: '#fa0',
-    exitColor: '#f00'
+    playerSpawn: { x: 0, y: 0 }
   },
 
   loading: true
 }
 
-export default INITIAL_STATE
+export default GAME_INITIAL_STATE

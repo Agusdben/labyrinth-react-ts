@@ -1,4 +1,4 @@
-import { GameState, Windows } from '../../types'
+import { GameState } from '../../types'
 
 export type GAME_ACTIONS =
   | { type: 'reset' }

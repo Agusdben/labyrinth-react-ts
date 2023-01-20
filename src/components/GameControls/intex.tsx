@@ -1,30 +1,30 @@
 import { PlayerMoveDirections } from '../../types'
-import ArrowDown from '../ArrowDown'
-import ArrowLeft from '../ArrowLeft'
-import ArrowRight from '../ArrowRight'
-import ArrowUp from '../ArrowUp'
+import {
+  AiOutlineArrowDown,
+  AiOutlineArrowUp,
+  AiOutlineArrowLeft,
+  AiOutlineArrowRight
+} from 'react-icons/ai'
 
 interface Props {
   handlePlayerMove: (direction: PlayerMoveDirections) => void
 }
 
 const GameControls = ({ handlePlayerMove }: Props) => {
-  const arrowColor = '#a1a1a1'
-
   return (
-    <div className='flex flex-col items-center [&_button]:w-12 lg:hidden'>
+    <div className='flex flex-col items-center gap-4 [&_button]:text-zinc-900 [&_button]:text-xl [&_button]:bg-zinc-200 [&_button]:p-2'>
       <button onClick={() => handlePlayerMove(PlayerMoveDirections.up)}>
-        <ArrowUp stroke={arrowColor} />
+        <AiOutlineArrowUp />
       </button>
-      <div>
+      <div className='flex gap-4'>
         <button onClick={() => handlePlayerMove(PlayerMoveDirections.left)}>
-          <ArrowLeft stroke={arrowColor} />
+          <AiOutlineArrowLeft />
         </button>
         <button onClick={() => handlePlayerMove(PlayerMoveDirections.down)}>
-          <ArrowDown stroke={arrowColor} />
+          <AiOutlineArrowDown />
         </button>
         <button onClick={() => handlePlayerMove(PlayerMoveDirections.right)}>
-          <ArrowRight stroke={arrowColor} />
+          <AiOutlineArrowRight />
         </button>
       </div>
     </div>

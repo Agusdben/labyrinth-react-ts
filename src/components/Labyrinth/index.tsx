@@ -15,7 +15,7 @@ const Labyrinth = ({ width, height }: Dimension) => {
         ref={canvasRef}
         width={width}
         height={height}
-        className={`w-[${width}px] h-[${height}px]`}
+        className={`outline outline-[10px] outline-black w-[${width}px] h-[${height}px]`}
       />
       <LabyrinthLeyend />
       <GameControls handlePlayerMove={handlePlayerMove} />

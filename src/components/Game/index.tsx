@@ -4,21 +4,23 @@ import Labyrinth from '../Labyrinth'
 import Levels from '../GameLevels'
 import Menu from '../Menu'
 import Arrowback from '../ArrowBack'
+import GameOptions from '../GameOptions'
+import HowToPlay from '../HowToPlay'
 
 const Game = ({ width, height }: Dimension) => {
-  const { window, windowsHistory, handlePrevWindow } = useWindows()
+  const { window, handlePrevWindow } = useWindows()
 
-  const WINDOWS = {
+  const WINDOWS: { [key: string]: JSX.Element } = {
     [Windows.menu]: <Menu width={width} height={height} />,
     [Windows.levels]: <Levels width={width} height={height} />,
     [Windows.labyrinth]: <Labyrinth width={width} height={height} />,
-    [Windows.options]: <></>
+    [Windows.options]: <GameOptions width={width} height={height} />,
+    [Windows.how_to_play]: <HowToPlay width={width} height={height} />
   }
 
   return (
     <section className='m-auto'>
       <h2 className='text-center'>{window}</h2>
-
       <article className='flex gap-2 opacity-80'>
         <button type='button' onClick={handlePrevWindow}>
           <Arrowback className='w-12' />

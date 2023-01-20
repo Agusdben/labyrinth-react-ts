@@ -1,7 +1,7 @@
 import { createContext, useReducer } from 'react'
 import { GAME_ACTIONS } from '../reducers/GameReducer/actions'
 import { gameReducer } from '../reducers/GameReducer/gameReducer'
-import INITIAL_STATE from '../reducers/GameReducer/initial_state'
+import GAME_INITIAL_STATE from '../reducers/GameReducer/gameInitialState'
 import { GameState } from '../types'
 
 interface Context {
@@ -10,7 +10,7 @@ interface Context {
 }
 
 export const GameContext = createContext<Context>({
-  gameState: INITIAL_STATE,
+  gameState: GAME_INITIAL_STATE,
   dispatch: () => {}
 })
 
@@ -19,7 +19,7 @@ interface Props {
 }
 
 const GameContextProvider = ({ children }: Props) => {
-  const [gameState, dispatch] = useReducer(gameReducer, INITIAL_STATE)
+  const [gameState, dispatch] = useReducer(gameReducer, GAME_INITIAL_STATE)
 
   return (
     <GameContext.Provider value={{ gameState, dispatch }}>

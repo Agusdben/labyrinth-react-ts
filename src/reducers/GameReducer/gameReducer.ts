@@ -1,12 +1,12 @@
 import { GameState } from '../../types'
 import { GAME_ACTIONS } from './actions'
-import INITIAL_STATE from './initial_state'
+import GAME_INITIAL_STATE from './gameInitialState'
 
 export const gameReducer = (state: GameState, action: GAME_ACTIONS) => {
   switch (action.type) {
     case 'reset':
       return {
-        ...INITIAL_STATE
+        ...GAME_INITIAL_STATE
       }
     case 'set_labyrinth':
       return {
