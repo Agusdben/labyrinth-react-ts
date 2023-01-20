@@ -2,12 +2,14 @@ import { useContext, useEffect, useRef } from 'react'
 import { GameContext } from '../contexts/GameContext'
 import { Dimension } from '../types'
 import useLabyrinth from './useLabyrinth'
+import useOptions from './useOptions'
 import usePlayer from './usePlayer'
 
-const useGame = ({ width, height }: Dimension) => {
+const useGame = () => {
   const { gameState, dispatch } = useContext(GameContext)
   const labyrinth = useLabyrinth()
   const player = usePlayer()
+  const options = useOptions()
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
   const setContext = (context: CanvasRenderingContext2D) => {
@@ -16,8 +18,8 @@ const useGame = ({ width, height }: Dimension) => {
 
   // labyrinth effects
   useEffect(() => {
-    labyrinth.setBoard({ width, height }) // useLabyrinth width and height params
-  }, [width, height])
+    labyrinth.setBoard(options.resolution)
+  }, [options.resolution])
 
   useEffect(() => {
     labyrinth.setCellDimension()

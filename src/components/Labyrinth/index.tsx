@@ -1,11 +1,12 @@
 import useGame from '../../hooks/useGame'
+import useOptions from '../../hooks/useOptions'
 import usePlayer from '../../hooks/usePlayer'
-import { Dimension } from '../../types'
 import GameControls from '../GameControls/intex'
 import { LabyrinthLeyend } from '../LabyrinthLeyend'
 
-const Labyrinth = ({ width, height }: Dimension) => {
-  const { canvasRef } = useGame({ width, height })
+const Labyrinth = () => {
+  const { resolution } = useOptions()
+  const { canvasRef } = useGame()
   const { handlePlayerMove } = usePlayer()
 
   return (
@@ -13,9 +14,8 @@ const Labyrinth = ({ width, height }: Dimension) => {
       <h2>Level: {}</h2>
       <canvas
         ref={canvasRef}
-        width={width}
-        height={height}
-        className={`outline outline-[10px] outline-black w-[${width}px] h-[${height}px]`}
+        style={{ width: resolution.width, height: resolution.height }}
+        className='outline outline-[10px] outline-black'
       />
       <LabyrinthLeyend />
       <GameControls handlePlayerMove={handlePlayerMove} />

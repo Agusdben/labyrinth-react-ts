@@ -1,11 +1,15 @@
+import useOptions from '../../hooks/useOptions'
 import useWindows from '../../hooks/useWindows'
-import { Dimension } from '../../types'
 import MenuButtons from '../MenuButtons'
 
-const GameOptions = ({ width, height }: Dimension) => {
+const GameOptions = () => {
+  const { resolution } = useOptions()
   const { setChangePlayerColorWindow } = useWindows()
   return (
-    <div style={{ width, height }} className='flex justify-center items-center'>
+    <div
+      style={{ width: resolution.width, height: resolution.height }}
+      className='flex justify-center items-center'
+    >
       <MenuButtons
         onClick={setChangePlayerColorWindow}
         value='Change player color'

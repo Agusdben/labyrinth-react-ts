@@ -1,11 +1,10 @@
 import { useState } from 'react'
 import { LABYRINTH_STYLES, PLAYER_STYLES } from '../../constants/styles'
 import useOptions from '../../hooks/useOptions'
-import { Dimension } from '../../types'
 import MenuButtons from '../MenuButtons'
 
-const ChangePlayerColor = ({ width, height }: Dimension) => {
-  const { playerOptions, setPlayerColor } = useOptions()
+const ChangePlayerColor = () => {
+  const { playerOptions, setPlayerColor, resolution } = useOptions()
   const [colorSelected, setColorSelected] = useState<string>(
     playerOptions.color
   )
@@ -20,7 +19,7 @@ const ChangePlayerColor = ({ width, height }: Dimension) => {
 
   return (
     <div
-      style={{ width, height }}
+      style={{ width: resolution.width, height: resolution.height }}
       className='flex flex-col items-center justify-center gap-10'
     >
       {/* how is gonna by */}

@@ -61,6 +61,7 @@ export interface Options {
   player: {
     color: string
   }
+  resolution: Dimension
 }
 
 export interface GameState {
