@@ -14,8 +14,9 @@ const Labyrinth = () => {
       <h2>Level: {}</h2>
       <canvas
         ref={canvasRef}
-        style={{ width: resolution.width, height: resolution.height }}
         className='outline outline-[10px] outline-black'
+        width={resolution.width}
+        height={resolution.height}
       />
       <LabyrinthLeyend />
       <GameControls handlePlayerMove={handlePlayerMove} />
