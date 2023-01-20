@@ -14,7 +14,6 @@ const Labyrinth = () => {
       <h2>Level: {}</h2>
       <canvas
         ref={canvasRef}
-        className='outline outline-[10px] outline-black'
         width={resolution.width}
         height={resolution.height}
       />

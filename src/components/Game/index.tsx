@@ -27,7 +27,7 @@ const Game = () => {
     <section className='m-auto flex flex-col gap-4 bg-zinc-800 p-4 rounded-md'>
       <header className='flex gap-2 justify-between items-center'>
         <h2 className='text-center text-2xl'>{window}</h2>
-        {window !== Windows.menu ? <PrevWindowButton /> : null}
+        <PrevWindowButton />
       </header>
       <article className='flex overflow-y-auto'>{WINDOWS[window]}</article>
     </section>

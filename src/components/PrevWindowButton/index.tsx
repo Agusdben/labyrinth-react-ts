@@ -1,9 +1,17 @@
 import useWindows from '../../hooks/useWindows'
 import { TbArrowBackUp } from 'react-icons/tb'
+import { Windows } from '../../types'
 const PrevWindowButton = () => {
-  const { handlePrevWindow } = useWindows()
+  const { handlePrevWindow, window } = useWindows()
   return (
-    <button type='button' className='p-2 border-2' onClick={handlePrevWindow}>
+    <button
+      type='button'
+      className={`p-2 border-2 ${
+        window === Windows.menu ? 'opacity-0' : 'opacity-100'
+      }`}
+      onClick={window === Windows.menu ? () => {} : handlePrevWindow}
+      disabled={window === Windows.menu}
+    >
       <TbArrowBackUp />
     </button>
   )
