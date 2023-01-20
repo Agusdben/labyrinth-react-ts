@@ -9,18 +9,16 @@ import HowToPlay from '../HowToPlay'
 import ChangePlayerColor from '../ChangePlayerColor'
 import PrevWindowButton from '../PrevWindowButton'
 
-const Game = ({ width, height }: Dimension) => {
+const Game = () => {
   const { window } = useWindows()
 
   const WINDOWS: { [key: string]: JSX.Element } = {
-    [Windows.menu]: <Menu width={width} height={height} />,
-    [Windows.levels]: <Levels width={width} height={height} />,
-    [Windows.labyrinth]: <Labyrinth width={width} height={height} />,
-    [Windows.options]: <GameOptions width={width} height={height} />,
-    [Windows.how_to_play]: <HowToPlay width={width} height={height} />,
-    [Windows.change_player_color]: (
-      <ChangePlayerColor width={width} height={height} />
-    )
+    [Windows.menu]: <Menu />,
+    [Windows.levels]: <Levels />,
+    [Windows.labyrinth]: <Labyrinth />,
+    [Windows.options]: <GameOptions />,
+    [Windows.how_to_play]: <HowToPlay />,
+    [Windows.change_player_color]: <ChangePlayerColor />
   }
 
   return (
