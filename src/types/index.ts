@@ -12,7 +12,8 @@ export enum Windows {
   options = 'Options',
   how_to_play = 'How to play',
   change_player_color = 'Change Player Color',
-  graphics = 'graphics'
+  graphics = 'graphics',
+  sound = 'Sound'
 }
 
 export enum PlayerMoveDirections {
@@ -63,6 +64,10 @@ export interface Options {
     color: string
   }
   resolution: Dimension
+  sounds: {
+    effects: number
+    music: number
+  }
 }
 
 export interface GameState {

@@ -17,6 +17,24 @@ export const optionsReducer = (state: Options, action: OPTIONS_ACTIONS) => {
         resolution: action.payload
       }
     }
+    case 'set_music_volume': {
+      return {
+        ...state,
+        sounds: {
+          ...state.sounds,
+          music: action.payload
+        }
+      }
+    }
+    case 'set_effects_volume': {
+      return {
+        ...state,
+        sounds: {
+          ...state.sounds,
+          effects: action.payload
+        }
+      }
+    }
     default:
       return {
         ...state

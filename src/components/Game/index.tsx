@@ -1,14 +1,14 @@
 import useWindows from '../../hooks/useWindows'
-import { Dimension, Windows } from '../../types'
+import { Windows } from '../../types'
 import Labyrinth from '../Labyrinth'
 import Levels from '../GameLevels'
 import Menu from '../Menu'
-import Arrowback from '../ArrowBack'
 import GameOptions from '../GameOptions'
 import HowToPlay from '../HowToPlay'
 import ChangePlayerColor from '../ChangePlayerColor'
 import PrevWindowButton from '../PrevWindowButton'
 import Graphics from '../Graphics'
+import Sound from '../Sound'
 
 const Game = () => {
   const { window } = useWindows()
@@ -20,7 +20,8 @@ const Game = () => {
     [Windows.options]: <GameOptions />,
     [Windows.how_to_play]: <HowToPlay />,
     [Windows.change_player_color]: <ChangePlayerColor />,
-    [Windows.graphics]: <Graphics />
+    [Windows.graphics]: <Graphics />,
+    [Windows.sound]: <Sound />
   }
 
   return (

@@ -3,19 +3,14 @@ import LEVELS from '../../constants/levels'
 import useLevel from '../../hooks/useLevel'
 import useOptions from '../../hooks/useOptions'
 import useWindows from '../../hooks/useWindows'
-
+import { FaPlay } from 'react-icons/fa'
 const GameLevels = () => {
   const { resolution } = useOptions()
   const { setLabyrinthWindow } = useWindows()
   const { setLevel } = useLevel()
-  const [levelSelected, setLevelSelected] = useState<number>(0)
 
-  const handleSelectedLevel = (l: number) => () => {
-    setLevelSelected(l)
-  }
-
-  const handleGo = () => {
-    setLevel(levelSelected)
+  const handlePlay = (l: number) => {
+    setLevel(l)
     setLabyrinthWindow()
   }
 
@@ -24,28 +19,18 @@ const GameLevels = () => {
       className='flex flex-col gap-2 h-full w-full'
       style={{ width: resolution.width, height: resolution.height }}
     >
-      <ul className='p-3 flex-1 grid grid-cols-4 gap-4 overflow-y-auto'>
-        {LEVELS.map((l, index) => (
-          <li className='grid aspect-square' key={l.level}>
-            <button
-              className={`border-zinc-200 border-2 hover:bg-zinc-200 hover:text-zinc-900 ${
-                levelSelected === index + 1 ? 'bg-zinc-200 text-zinc-900' : ''
-              }`}
-              onClick={handleSelectedLevel(l.level)}
-            >
-              <p>Level</p>
-              <p>{l.level}</p>
+      <ul className='flex-1 flex flex-col gap-4 overflow-y-auto px-2'>
+        {LEVELS.map(l => (
+          <li className='border p-2 flex justify-between' key={l.level}>
+            <p>
+              level <span>{l.level}</span>
+            </p>
+            <button onClick={() => handlePlay(l.level)}>
+              <FaPlay className='text-green-600' />
             </button>
           </li>
         ))}
       </ul>
-      <button
-        onClick={handleGo}
-        disabled={levelSelected < 1}
-        className='disabled:opacity-50 border-zinc-200 border-2 px-6 m-auto hover:text-zinc-900 hover:bg-zinc-200'
-      >
-        GO!
-      </button>
     </div>
   )
 }

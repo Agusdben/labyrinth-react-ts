@@ -4,7 +4,8 @@ import MenuButtons from '../MenuButtons'
 
 const GameOptions = () => {
   const { resolution } = useOptions()
-  const { setChangePlayerColorWindow, setGraphicsWindow } = useWindows()
+  const { setChangePlayerColorWindow, setGraphicsWindow, setSoundWindow } =
+    useWindows()
   return (
     <div
       style={{ width: resolution.width, height: resolution.height }}
@@ -15,6 +16,7 @@ const GameOptions = () => {
         value='Change player color'
       />
       <MenuButtons onClick={setGraphicsWindow} value='Graphics' />
+      <MenuButtons onClick={setSoundWindow} value='Sound' />
     </div>
   )
 }

@@ -69,6 +69,13 @@ const useWindows = () => {
     })
   }
 
+  const setSoundWindow = () => {
+    dispatch({
+      type: 'set_window',
+      payload: getNewWindowObject(Windows.sound)
+    })
+  }
+
   return {
     window: gameState.window.actual,
     windowsHistory: gameState.window.history,
@@ -78,7 +85,8 @@ const useWindows = () => {
     handlePrevWindow,
     setChangePlayerColorWindow,
     setHowToPlayWindow,
-    setGraphicsWindow
+    setGraphicsWindow,
+    setSoundWindow
   }
 }
 
