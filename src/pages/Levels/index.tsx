@@ -28,7 +28,7 @@ const Levels = () => {
               <li className='border grid p-2 aspect-square' key={l.level}>
                 <button
                   className={`${
-                    isLevelSelected ? 'bg-zinc-200 text-zinc-900' : ''
+                    isLevelSelected ? 'bg-orange-300 text-zinc-900' : ''
                   } `}
                   disabled={isBlocked}
                   onClick={

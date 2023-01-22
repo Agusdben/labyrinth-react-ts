@@ -1,7 +1,7 @@
 export const LABYRINTH_STYLES = {
-  wallColor: '#000',
-  pathColor: '#fa0',
-  exitColor: '#f00'
+  wallColor: '#18181b',
+  pathColor: '#fdba74',
+  exitColor: '#588a33'
 }
 
-export const PLAYER_STYLES = ['#00f', '#542345', '#043453', '#f8aa', '#44fa']
+export const PLAYER_STYLES = ['#00f', '#742375', '#f00', '#f8a', '#44fa']

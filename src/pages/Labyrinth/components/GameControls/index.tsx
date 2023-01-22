@@ -12,7 +12,7 @@ interface Props {
 
 const GameControls = ({ handlePlayerMove }: Props) => {
   return (
-    <div className='flex flex-col items-center gap-4 [&_button]:text-zinc-900 [&_button]:text-xl [&_button]:bg-zinc-200 [&_button]:p-2'>
+    <div className='flex flex-col items-center gap-4 [&_button]:text-zinc-900 [&_button]:text-xl [&_button]:bg-orange-300 [&_button]:p-2'>
       <button onClick={() => handlePlayerMove(PlayerMoveDirections.up)}>
         <AiOutlineArrowUp />
       </button>

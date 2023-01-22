@@ -15,7 +15,7 @@ const InpurRange = ({ tag, onChange, min, max, step, value }: Props) => {
       <p>{tag}</p>
       <div className='flex gap-2'>
         <input
-          className='accent-orange-400'
+          className='accent-orange-300'
           type='range'
           min={min}
           max={max}

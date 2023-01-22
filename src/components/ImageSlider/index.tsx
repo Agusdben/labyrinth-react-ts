@@ -54,8 +54,8 @@ const ImageSlider = ({ images }: Props) => {
             <button
               onClick={() => handleCustumIndex(i)}
               key={img + i}
-              className={`w-3 aspect-square outline outline-2 outline-offset-2 outline-zinc-200 ${
-                isImgSelected ? 'bg-zinc-200' : ''
+              className={`w-3 aspect-square outline outline-2 outline-offset-2 outline-orange-300 ${
+                isImgSelected ? 'bg-orange-300' : ''
               }`}
             />
           )

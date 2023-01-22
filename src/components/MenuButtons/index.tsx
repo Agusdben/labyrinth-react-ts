@@ -48,7 +48,7 @@ const MenuButton = ({ route, value, disabled }: Props) => {
         onClick={handleClick}
         onMouseEnter={hoverSong.play}
         disabled={disabled}
-        className='text-center border-current border-2 px-6 py-2 w-3/4 m-auto disabled:opacity-60 enabled:hover:text-zinc-900 enabled:hover:bg-zinc-200'
+        className='text-center border-current border-2 px-6 py-2 w-3/4 m-auto disabled:opacity-60 enabled:hover:text-zinc-900 enabled:hover:bg-orange-300'
       >
         {value}
       </button>
