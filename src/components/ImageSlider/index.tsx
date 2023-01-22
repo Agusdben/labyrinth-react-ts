@@ -35,22 +35,6 @@ const ImageSlider = ({ images }: Props) => {
 
   return (
     <div className='flex flex-col gap-2 w-full h-full'>
-      {/* SWITCH IMAGES */}
-      {/* <div className='flex ml-auto items-center gap-2 text-black font-extrabold [&_button:hover]:bg-neon-green [&_button:hover]:text-white [&_button]:transition-colors'>
-        <button
-          onClick={handlePrev}
-          className='border-2 border-neon-green px-4 rounded-lg grid content-center'
-        >
-          &lt;
-        </button>
-        <button
-          onClick={handleNext}
-          className='border-2 border-neon-green px-4 rounded-lg grid content-center'
-        >
-          &gt;
-        </button>
-      </div> */}
-      {/* BIG IMAGE SELECTED */}
       <picture className='flex-1 overflow-hidden p-4'>
         <img
           className='h-full w-full object-contain transition-opacity duration-500'

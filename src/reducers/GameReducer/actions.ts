@@ -8,5 +8,4 @@ export type GAME_ACTIONS =
   | { type: 'set_context'; payload: GameState['context'] }
   | { type: 'set_loading'; payload: GameState['loading'] }
   | { type: 'set_cell'; payload: GameState['cell'] }
-  | { type: 'set_window'; payload: GameState['window'] }
   | { type: 'set_level'; payload: GameState['level'] }

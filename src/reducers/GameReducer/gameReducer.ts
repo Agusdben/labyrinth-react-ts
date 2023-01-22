@@ -47,11 +47,6 @@ export const gameReducer = (
         level: action.payload
       }
     }
-    case 'set_window':
-      return {
-        ...state,
-        window: action.payload
-      }
     default:
       return state
   }

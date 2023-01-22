@@ -1,10 +1,10 @@
-import { PlayerMoveDirections } from '../../types'
 import {
   AiOutlineArrowDown,
   AiOutlineArrowUp,
   AiOutlineArrowLeft,
   AiOutlineArrowRight
 } from 'react-icons/ai'
+import { PlayerMoveDirections } from '../../../../types'
 
 interface Props {
   handlePlayerMove: (direction: PlayerMoveDirections) => void

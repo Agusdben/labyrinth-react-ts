@@ -1,6 +1,5 @@
-import { LABYRINTH_STYLES } from '../../constants/styles'
-import useOptions from '../../hooks/useOptions'
-import usePlayer from '../../hooks/usePlayer'
+import { LABYRINTH_STYLES } from '../../../../constants/styles'
+import useOptions from '../../../../hooks/useOptions'
 
 export const LabyrinthLeyend = () => {
   const { playerOptions } = useOptions()

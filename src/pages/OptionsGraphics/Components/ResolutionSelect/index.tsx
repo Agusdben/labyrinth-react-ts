@@ -1,7 +1,7 @@
 import React from 'react'
-import RESOLUTIONS from '../../constants/resoloutions'
-import useOptions from '../../hooks/useOptions'
-import { Dimension } from '../../types'
+import RESOLUTIONS from '../../../../constants/resoloutions'
+import useOptions from '../../../../hooks/useOptions'
+import { Dimension } from '../../../../types'
 
 const ResolutionSelect = () => {
   const { setResolution } = useOptions()

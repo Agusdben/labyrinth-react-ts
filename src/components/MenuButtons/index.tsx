@@ -2,14 +2,16 @@ import useSfx from '../../hooks/useSfx'
 import btnHoverSong from '/sfx/menu-hover.mp3'
 import btnClickSong from '/sfx/menu-click.mp3'
 import { useRef } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 interface Props {
-  onClick: () => void
+  route: string
   value: string
   disabled?: boolean
 }
 
-const MenuButtons = ({ onClick, value, disabled = false }: Props) => {
+const MenuButton = ({ route, value, disabled }: Props) => {
+  const navigate = useNavigate()
   const btnRef = useRef<HTMLButtonElement>(null)
   const hoverSong = useSfx()
   const clickSong = useSfx()
@@ -22,7 +24,7 @@ const MenuButtons = ({ onClick, value, disabled = false }: Props) => {
     if (!clickSong.ref.current) return
     const ms = 1000
     setTimeout(() => {
-      onClick()
+      navigate(route)
     }, clickSong.ref.current.duration * ms) // seconds -> ms
     console.log(clickSong.ref.current.duration)
   }
@@ -46,7 +48,7 @@ const MenuButtons = ({ onClick, value, disabled = false }: Props) => {
         onClick={handleClick}
         onMouseEnter={hoverSong.play}
         disabled={disabled}
-        className='border-current border-2 px-6 py-2 w-3/4 m-auto hover:text-zinc-900 hover:bg-zinc-200'
+        className='text-center border-current border-2 px-6 py-2 w-3/4 m-auto disabled:opacity-60 enabled:hover:text-zinc-900 enabled:hover:bg-zinc-200'
       >
         {value}
       </button>
@@ -60,4 +62,4 @@ const MenuButtons = ({ onClick, value, disabled = false }: Props) => {
   )
 }
 
-export default MenuButtons
+export default MenuButton
