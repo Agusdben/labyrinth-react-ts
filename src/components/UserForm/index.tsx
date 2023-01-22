@@ -23,16 +23,21 @@ const UserForm = ({ onSubmit }: Props) => {
   }
 
   return (
-    <form onSubmit={handleSubmitUser}>
-      <div>
+    <form onSubmit={handleSubmitUser} className='flex flex-col gap-4 '>
+      <div className=' flex flex-col text-left gap-2'>
         <label htmlFor='username'>Username</label>
         <input
+          className='p-2 bg-transparent focus:outline-none border-b-2 border-orange-300 placeholder:opacity-50 invalid:border-red-900 peer'
           id='username'
           type='text'
           onChange={handleChangeUsername}
           value={username}
+          pattern={'^[a-zA-Z0-9-_]{3,}$'}
           placeholder='Type here your username'
         />
+        <strong className='invisible peer-invalid:visible'>
+          Minimum length is 3 characters/numbers, simbols: - _
+        </strong>
       </div>
       <button type='submit'>Save</button>
     </form>

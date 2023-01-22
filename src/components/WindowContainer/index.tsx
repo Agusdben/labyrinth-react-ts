@@ -10,7 +10,7 @@ const WindowContainer = ({ children }: Props) => {
 
   return (
     <article
-      className='flex flex-col gap-4 justify-center m-auto'
+      className='flex flex-col gap-4 justify-center m-auto animate-smoothOpacityIncrease'
       style={{ width: resolution.width, height: resolution.height }}
     >
       {children}

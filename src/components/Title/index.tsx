@@ -4,7 +4,11 @@ interface Props {
   children: React.ReactNode
 }
 const Title = ({ children }: Props) => {
-  return <h2 className='text-2xl'>{children}</h2>
+  return (
+    <h2 className='text-2xl text-center underline underline-offset-4'>
+      {children}
+    </h2>
+  )
 }
 
 export default Title
