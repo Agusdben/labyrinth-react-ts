@@ -9,11 +9,13 @@ import ChangePlayerColor from '../ChangePlayerColor'
 import PrevWindowButton from '../PrevWindowButton'
 import Graphics from '../Graphics'
 import Sound from '../Sound'
+import WelcomePortade from '../WelcomePortade'
 
 const Game = () => {
   const { window } = useWindows()
 
   const WINDOWS: { [key: string]: JSX.Element } = {
+    [Windows.welcome]: <WelcomePortade />,
     [Windows.menu]: <Menu />,
     [Windows.levels]: <Levels />,
     [Windows.labyrinth]: <Labyrinth />,

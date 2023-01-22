@@ -6,6 +6,7 @@ export enum LabyrinthPieces {
 }
 
 export enum Windows {
+  welcome = 'Wlcome',
   menu = 'Menu',
   levels = 'Levels',
   labyrinth = 'Labyrinth',

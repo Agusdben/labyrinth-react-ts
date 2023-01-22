@@ -3,7 +3,7 @@ import { GameState, Windows } from '../../types'
 const GAME_INITIAL_STATE: GameState = {
   context: null,
   level: -1,
-  window: { actual: Windows.menu, history: [Windows.menu] },
+  window: { actual: Windows.welcome, history: [Windows.menu] },
   board: { width: 0, height: 0 },
   cell: { width: 0, height: 0 },
   player: {

@@ -9,7 +9,7 @@ interface UserContext {
   dispatch: React.Dispatch<UserActions>
 }
 
-const UserContext = createContext<UserContext>({
+export const UserContext = createContext<UserContext>({
   userState: USER_INITIAL_STATE,
   dispatch: () => {}
 })

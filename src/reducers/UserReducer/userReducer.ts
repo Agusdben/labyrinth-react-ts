@@ -14,6 +14,11 @@ const userReducer = (state: User, action: UserActions): User => {
         username: action.payload
       }
     }
+    case 'set_user': {
+      return {
+        ...action.payload
+      }
+    }
     default:
       return state
   }
