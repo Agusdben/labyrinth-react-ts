@@ -7,7 +7,7 @@ const OPTIONS_INITIAL_STATE: Options = {
   resolution: RESOLUTIONS[0],
   sounds: {
     effects: 0.5,
-    music: 0.5
+    music: 0.0
   }
 }
 

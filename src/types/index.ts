@@ -23,6 +23,10 @@ export enum PlayerMoveDirections {
   right = 'ArrowRight'
 }
 
+export interface User {
+  username: string
+}
+
 export enum LocalStorage {
   savedGame = 'savedGame'
 }

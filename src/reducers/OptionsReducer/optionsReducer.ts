@@ -2,7 +2,10 @@ import { Options } from '../../types'
 import { OPTIONS_ACTIONS } from './actions'
 import OPTIONS_INITIAL_STATE from './optionsInitialState'
 
-export const optionsReducer = (state: Options, action: OPTIONS_ACTIONS) => {
+export const optionsReducer = (
+  state: Options,
+  action: OPTIONS_ACTIONS
+): Options => {
   switch (action.type) {
     case 'reset':
       return {

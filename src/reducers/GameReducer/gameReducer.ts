@@ -2,7 +2,10 @@ import { GameState } from '../../types'
 import { GAME_ACTIONS } from './actions'
 import GAME_INITIAL_STATE from './gameInitialState'
 
-export const gameReducer = (state: GameState, action: GAME_ACTIONS) => {
+export const gameReducer = (
+  state: GameState,
+  action: GAME_ACTIONS
+): GameState => {
   switch (action.type) {
     case 'reset':
       return {
