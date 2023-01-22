@@ -9,9 +9,9 @@ const Menu = () => {
       <Title>Menu</Title>
       <WindowContainer>
         <div className='flex flex-col gap-4'>
-          <MenuButton value='Play!' route='/levels' />
-          <MenuButton value='Options' route='/options' />
-          <MenuButton value='How to play' route='/how' />
+          <MenuButton value='Play!' route='/menu/levels' />
+          <MenuButton value='Options' route='/menu/options' />
+          <MenuButton value='How to play' route='/menu/how' />
         </div>
       </WindowContainer>
     </PageSection>

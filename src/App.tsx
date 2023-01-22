@@ -19,16 +19,23 @@ function App () {
         <main className='flex-1 flex m-auto'>
           <Routes>
             <Route path='/' element={<Home />} />
-            <Route path='menu' element={<Menu />} />
-            <Route path='levels' element={<Levels />} />
-            <Route path='labyrinth/:level' element={<Labyrinth />} />
-            <Route path='options'>
-              <Route index={true} element={<Options />} />
-              <Route path='player' element={<OptionsPlayer />} />
-              <Route path='graphics' element={<OptionsGraphics />} />
-              <Route path='sound' element={<OptionsSound />} />
+
+            <Route path='menu'>
+              <Route index={true} element={<Menu />} />
+
+              <Route path='levels' element={<Levels />} />
+
+              <Route path='options'>
+                <Route index={true} element={<Options />} />
+                <Route path='player' element={<OptionsPlayer />} />
+                <Route path='graphics' element={<OptionsGraphics />} />
+                <Route path='sound' element={<OptionsSound />} />
+              </Route>
+
+              <Route path='how' element={<HowToPlay />} />
             </Route>
-            <Route path='how' element={<HowToPlay />} />
+
+            <Route path='labyrinth/:level' element={<Labyrinth />} />
           </Routes>
         </main>
       </BrowserRouter>

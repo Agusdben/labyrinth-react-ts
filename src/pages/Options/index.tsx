@@ -8,9 +8,9 @@ const Options = () => {
     <PageSection>
       <Title>Options</Title>
       <WindowContainer>
-        <MenuButton route='/options/player' value='Player' />
-        <MenuButton route='/options/graphics' value='Graphics' />
-        <MenuButton route='/options/sound' value='Sound' />
+        <MenuButton route='/menu/options/player' value='Player' />
+        <MenuButton route='/menu/options/graphics' value='Graphics' />
+        <MenuButton route='/menu/options/sound' value='Sound' />
       </WindowContainer>
     </PageSection>
   )
