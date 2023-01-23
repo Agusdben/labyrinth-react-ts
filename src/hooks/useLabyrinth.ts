@@ -24,7 +24,7 @@ const useLabyrinth = () => {
 
   const setLabyrinth = () => {
     const { level } = gameState
-    const newLevel: Level = LEVELS[level] // minus one becouse array first index is 0 and first level is 1
+    const newLevel: Level = LEVELS[level]
 
     const newLabyrinth: GameState['labyrinth'] = {
       ...labyrinth,

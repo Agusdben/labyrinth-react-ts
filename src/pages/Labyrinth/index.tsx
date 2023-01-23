@@ -6,6 +6,7 @@ import useOptions from '../../hooks/useOptions'
 import usePlayer from '../../hooks/usePlayer'
 import GameControls from './components/GameControls'
 import { LabyrinthLeyend } from './components/LabyrinthLeyend'
+import ModalLabyrinthCompleted from './components/ModalLabyrinthCompleted'
 
 const Labyrinth = () => {
   const { resolution } = useOptions()
@@ -23,6 +24,7 @@ const Labyrinth = () => {
       />
       <LabyrinthLeyend />
       <GameControls handlePlayerMove={handlePlayerMove} />
+      <ModalLabyrinthCompleted />
     </PageSection>
   )
 }
