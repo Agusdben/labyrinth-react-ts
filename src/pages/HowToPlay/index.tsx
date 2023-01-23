@@ -11,7 +11,13 @@ const HowToPlay = () => {
     <PageSection>
       <Title>How to play</Title>
       <WindowContainer>
-        <ImageSlider images={images} />
+        <iframe
+          className='aspect-video'
+          src='https://www.youtube-nocookie.com/embed/j06WpHqzJ4w?rel=0&amp;controls=1&amp;showinfo=0'
+          title='How to play my game'
+          allowFullScreen
+        />
+        {/* <ImageSlider images={images} /> */}
       </WindowContainer>
     </PageSection>
   )
