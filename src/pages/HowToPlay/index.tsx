@@ -1,10 +1,6 @@
-import ImageSlider from '../../components/ImageSlider'
 import PageSection from '../../components/PageSection'
 import Title from '../../components/Title'
 import WindowContainer from '../../components/WindowContainer'
-import fer from '../../assets/tutorial/fer.png'
-import ferRuedas from '../../assets/tutorial/Fernando_envalido.png'
-const images = [fer, ferRuedas]
 
 const HowToPlay = () => {
   return (
@@ -17,7 +13,6 @@ const HowToPlay = () => {
           title='How to play my game'
           allowFullScreen
         />
-        {/* <ImageSlider images={images} /> */}
       </WindowContainer>
     </PageSection>
   )
