@@ -38,7 +38,6 @@ const useGame = () => {
 
   useEffect(() => {
     if (!gameState.context) return
-    console.log('dibuje')
     dispatch({ type: 'set_loading', payload: true })
     labyrinth.drawLabyrinth(gameState.context)
     dispatch({ type: 'set_loading', payload: false })
@@ -61,6 +60,12 @@ const useGame = () => {
     if (!context) return
     player.drawPlayer(context)
   }, [gameState.loading, gameState.player, gameState.cell, gameState.context])
+
+  useEffect(() => {
+    document.addEventListener('keydown', player.handleKeyDown)
+
+    return () => document.removeEventListener('keydown', player.handleKeyDown)
+  }, [gameState.player])
 
   return {
     canvasRef,

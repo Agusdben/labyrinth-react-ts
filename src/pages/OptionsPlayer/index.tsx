@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import PageSection from '../../components/PageSection'
 import Subtitle from '../../components/Subtitle'
 import Title from '../../components/Title'
@@ -7,17 +6,10 @@ import { LABYRINTH_STYLES, PLAYER_STYLES } from '../../constants/styles'
 import useOptions from '../../hooks/useOptions'
 
 const OptionsPlayer = () => {
-  const { playerOptions, setPlayerColor, resolution } = useOptions()
-  const [colorSelected, setColorSelected] = useState<string>(
-    playerOptions.color
-  )
+  const { setPlayerColor, playerOptions } = useOptions()
 
   const handleColorSelected = (style: string) => () => {
-    setColorSelected(style)
-  }
-
-  const handleSaveColor = () => {
-    setPlayerColor(colorSelected)
+    setPlayerColor(style)
   }
 
   return (
@@ -33,7 +25,7 @@ const OptionsPlayer = () => {
           <h3 className='text-black font-bold'>This is how it will look</h3>
           <div
             className='w-10 aspect-square'
-            style={{ backgroundColor: colorSelected }}
+            style={{ backgroundColor: playerOptions.color }}
           />
         </div>
         {/* all styles avalible */}

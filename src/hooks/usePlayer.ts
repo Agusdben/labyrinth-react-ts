@@ -40,7 +40,7 @@ const usePlayer = () => {
 
     const canvasX = x * cell.width
     const canvasY = y * cell.height
-    console.log({ canvasX, canvasY })
+
     return (
       canvasX >= 0 &&
       canvasY >= 0 &&
@@ -61,7 +61,7 @@ const usePlayer = () => {
   }
 
   const playerMoveUp = () => {
-    const { player, labyrinth, cell } = gameState
+    const { player, labyrinth } = gameState
     const { map } = labyrinth
     const { x: playerX, y: playerY } = player
 
@@ -105,7 +105,7 @@ const usePlayer = () => {
   }
 
   const playerMoveDown = () => {
-    const { player, labyrinth, cell } = gameState
+    const { player, labyrinth } = gameState
     const { map } = labyrinth
     const { x: playerX, y: playerY } = player
 
@@ -144,8 +144,7 @@ const usePlayer = () => {
     dispatch({ type: 'set_player', payload: newPlayer })
   }
 
-  const handlePlayerMove = (direction: PlayerMoveDirections) => {
-    console.log({ direction })
+  const handlePlayerMove = (direction: string) => {
     switch (direction) {
       case PlayerMoveDirections.up:
         playerMoveUp()
@@ -164,10 +163,15 @@ const usePlayer = () => {
     }
   }
 
+  const handleKeyDown = (e: KeyboardEvent) => {
+    handlePlayerMove(e.key)
+  }
+
   return {
     handlePlayerMove,
     setPlayer,
     drawPlayer,
+    handleKeyDown,
     player
   }
 }

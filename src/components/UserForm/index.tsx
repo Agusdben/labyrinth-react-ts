@@ -39,7 +39,12 @@ const UserForm = ({ onSubmit }: Props) => {
           Minimum length is 3 characters/numbers, simbols: - _
         </strong>
       </div>
-      <button type='submit'>Save</button>
+      <button
+        type='submit'
+        className='border-2 border-orange-300 p-2 hover:bg-orange-300 hover:text-zinc-900'
+      >
+        Register
+      </button>
     </form>
   )
 }
