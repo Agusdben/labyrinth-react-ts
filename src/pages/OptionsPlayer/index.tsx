@@ -1,4 +1,5 @@
 import PageSection from '../../components/PageSection'
+import PrevWindowButton from '../../components/PrevWindowButton'
 import Subtitle from '../../components/Subtitle'
 import Title from '../../components/Title'
 import WindowContainer from '../../components/WindowContainer'
@@ -42,6 +43,7 @@ const OptionsPlayer = () => {
             ))}
           </div>
         </div>
+        <PrevWindowButton />
       </WindowContainer>
     </PageSection>
   )

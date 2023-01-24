@@ -6,6 +6,7 @@ import useOptions from '../../hooks/useOptions'
 import usePlayer from '../../hooks/usePlayer'
 import GameControls from './components/GameControls'
 import { LabyrinthLeyend } from './components/LabyrinthLeyend'
+import LeaveButton from './components/LeaveButton'
 import ModalLabyrinthCompleted from './components/ModalLabyrinthCompleted'
 
 const Labyrinth = () => {
@@ -16,7 +17,10 @@ const Labyrinth = () => {
 
   return (
     <PageSection>
-      <Title>Level: {level + 1}</Title>
+      <header className='flex items-center justify-between'>
+        <Title>Level: {level + 1}</Title>
+        <LeaveButton />
+      </header>
       <canvas
         ref={canvasRef}
         width={resolution.width}

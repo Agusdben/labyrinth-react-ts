@@ -3,6 +3,7 @@ import btnHoverSong from '/sfx/menu-hover.mp3'
 import btnClickSong from '/sfx/menu-click.mp3'
 import { useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
+import Button from '../Button'
 
 interface Props {
   route: string
@@ -12,7 +13,7 @@ interface Props {
 
 const MenuButton = ({ route, value, disabled }: Props) => {
   const navigate = useNavigate()
-  const btnRef = useRef<HTMLButtonElement>(null)
+  const btnRef = useRef<HTMLDivElement>(null)
   const hoverSong = useSfx()
   const clickSong = useSfx()
 
@@ -42,16 +43,15 @@ const MenuButton = ({ route, value, disabled }: Props) => {
 
   return (
     <div className='grid'>
-      <button
-        ref={btnRef}
-        type='button'
-        onClick={handleClick}
-        onMouseEnter={hoverSong.play}
-        disabled={disabled}
-        className='text-center border-current border-2 px-6 py-2 w-3/4 m-auto disabled:opacity-60 enabled:hover:text-zinc-900 enabled:hover:bg-orange-300'
-      >
-        {value}
-      </button>
+      <div className='flex' ref={btnRef} onMouseEnter={hoverSong.play}>
+        <Button
+          type='button'
+          onClick={handleClick}
+          disabled={Boolean(disabled)}
+        >
+          {value}
+        </Button>
+      </div>
       <audio ref={hoverSong.ref}>
         <source src={btnHoverSong} type='audio/mp3' />
       </audio>

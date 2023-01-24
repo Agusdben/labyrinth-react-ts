@@ -1,5 +1,5 @@
 import WindowContainer from '../../components/WindowContainer'
-import MenuButton from '../../components/MenuButtons'
+import MenuButton from '../../components/MenuButton'
 import PageSection from '../../components/PageSection'
 import Title from '../../components/Title'
 

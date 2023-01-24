@@ -22,6 +22,12 @@ export enum LocalStorage {
   options = 'options'
 }
 
+export interface Modal {
+  isOpen: boolean
+  title: string
+  handleModal: () => void
+}
+
 export interface ArrowSvgProps {
   className?: string
   stroke?: string

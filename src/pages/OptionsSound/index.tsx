@@ -1,6 +1,7 @@
 import React from 'react'
 import InpurRange from '../../components/InputRange'
 import PageSection from '../../components/PageSection'
+import PrevWindowButton from '../../components/PrevWindowButton'
 import Title from '../../components/Title'
 import WindowContainer from '../../components/WindowContainer'
 import useOptions from '../../hooks/useOptions'
@@ -35,6 +36,7 @@ const OptionsSound = () => {
           max={1}
           step={0.01}
         />
+        <PrevWindowButton />
       </WindowContainer>
     </PageSection>
   )

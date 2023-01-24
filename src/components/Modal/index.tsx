@@ -1,6 +1,7 @@
 import Portal from '../../Poral'
 import Subtitle from '../Subtitle'
 import { AiOutlineCloseCircle } from 'react-icons/ai'
+
 interface Props {
   children: React.ReactNode
   onClose: () => void
@@ -24,7 +25,7 @@ const Modal = ({ children, onClose, isOpen, title = '' }: Props) => {
                 <AiOutlineCloseCircle />
               </button>
             </header>
-            <div className='px-4 py-2 text-zinc-200'>{children}</div>
+            <div className='px-4 py-2 text-orange-300'>{children}</div>
           </article>
           <button
             type='button'

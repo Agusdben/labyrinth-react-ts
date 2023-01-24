@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { User } from '../../types'
+import Button from '../Button'
 
 interface Props {
   onSubmit: (user: User) => void
@@ -39,12 +40,9 @@ const UserForm = ({ onSubmit }: Props) => {
           Minimum length is 3 characters/numbers, simbols: - _
         </strong>
       </div>
-      <button
-        type='submit'
-        className='border-2 border-orange-300 p-2 hover:bg-orange-300 hover:text-zinc-900'
-      >
+      <Button type='submit' disabled={false}>
         Register
-      </button>
+      </Button>
     </form>
   )
 }

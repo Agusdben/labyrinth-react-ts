@@ -8,7 +8,7 @@ const Portade = () => {
   const { user } = useUser()
   return (
     <div
-      className='h-full w-full flex flex-col text-center gap-4'
+      className='h-full w-full flex flex-col text-center gap-4 relative'
       onClick={() => navigate('/menu')}
     >
       <Title>LABYRINTH</Title>
@@ -18,6 +18,7 @@ const Portade = () => {
       <p className='mt-auto animate-bounce transition-transform duration-[5000ms]'>
         Click to continue
       </p>
+      <small className='absolute bottom-1 right-1'>v1.0</small>
     </div>
   )
 }

@@ -10,7 +10,6 @@ import OptionsPlayer from './pages/OptionsPlayer'
 import OptionsGraphics from './pages/OptionsGraphics'
 import OptionsSound from './pages/OptionsSound'
 import HowToPlay from './pages/HowToPlay'
-import MainMenuMusic from './components/MainMenuMusic'
 
 function App () {
   return (
@@ -38,7 +37,6 @@ function App () {
           <Route path='labyrinth/:level' element={<Labyrinth />} />
         </Routes>
       </main>
-      <MainMenuMusic />
       <footer>FOOTER</footer>
     </div>
   )

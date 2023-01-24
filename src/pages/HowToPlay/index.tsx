@@ -1,4 +1,5 @@
 import PageSection from '../../components/PageSection'
+import PrevWindowButton from '../../components/PrevWindowButton'
 import Title from '../../components/Title'
 import WindowContainer from '../../components/WindowContainer'
 
@@ -13,6 +14,7 @@ const HowToPlay = () => {
           title='How to play my game'
           allowFullScreen
         />
+        <PrevWindowButton />
       </WindowContainer>
     </PageSection>
   )
