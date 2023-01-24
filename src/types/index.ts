@@ -17,7 +17,9 @@ export interface User {
 }
 
 export enum LocalStorage {
-  savedGame = 'savedGame'
+  savedGame = 'savedGame',
+  user = 'user',
+  options = 'options'
 }
 
 export interface ArrowSvgProps {

@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import { UserContext } from '../contexts/UserContext'
-import { User } from '../types'
+import { LocalStorage, User } from '../types'
 
 const useUser = () => {
   const { userState, dispatch } = useContext(UserContext)
@@ -11,6 +11,11 @@ const useUser = () => {
 
   const setUser = (user: User) => {
     dispatch({ type: 'set_user', payload: user })
+    saveUser(user)
+  }
+
+  const saveUser = (user: User) => {
+    localStorage.setItem(LocalStorage.user, JSON.stringify(user))
   }
 
   return {

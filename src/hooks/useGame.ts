@@ -1,7 +1,5 @@
 import { useContext, useEffect, useRef } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { GameContext } from '../contexts/GameContext'
-import { Dimension } from '../types'
 import useLabyrinth from './useLabyrinth'
 import useOptions from './useOptions'
 import usePlayer from './usePlayer'
@@ -12,7 +10,6 @@ const useGame = () => {
   const player = usePlayer()
   const options = useOptions()
   const canvasRef = useRef<HTMLCanvasElement>(null)
-  const navigate = useNavigate()
   const setContext = (context: CanvasRenderingContext2D) => {
     dispatch({ type: 'set_context', payload: context })
   }

@@ -8,7 +8,7 @@ const ModalLabyrinthCompleted = () => {
   const { level } = useLevel()
   const { player, isInExit } = usePlayer()
   const { isOpen, handleModal, title } = useModal({
-    title: `Level ${level} completed`
+    title: ''
   })
 
   useEffect(() => {
@@ -23,7 +23,7 @@ const ModalLabyrinthCompleted = () => {
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} title={title}>
-      <div>hola</div>
+      <p>{`Level ${level + 1} completed`}</p>
     </Modal>
   )
 }

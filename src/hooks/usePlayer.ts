@@ -164,7 +164,9 @@ const usePlayer = () => {
   }
 
   const handleKeyDown = (e: KeyboardEvent) => {
-    handlePlayerMove(e.key)
+    if (!isInExit()) {
+      handlePlayerMove(e.key)
+    }
   }
 
   const isInExit = () => {
