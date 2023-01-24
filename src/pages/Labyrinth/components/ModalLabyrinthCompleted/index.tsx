@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import Modal from '../../../../components/Modal'
 import useLevel from '../../../../hooks/useLevel'
 import useModal from '../../../../hooks/useModal'
@@ -10,14 +11,14 @@ const ModalLabyrinthCompleted = () => {
   const { isOpen, handleModal, title } = useModal({
     title: ''
   })
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (isInExit()) handleModal()
   }, [player])
 
   const onClose = () => {
-    // cositas chulas ⬇
-    // * * * * * * * * *
+    navigate('/menu/levels')
     handleModal()
   }
 

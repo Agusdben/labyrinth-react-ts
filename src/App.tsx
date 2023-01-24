@@ -16,31 +16,29 @@ function App () {
   return (
     <div className='flex flex-col min-h-screen w-screen bg-zinc-900 text-orange-300 font-bold overflow-x-hidden'>
       <header>HEADER</header>
-      <BrowserRouter>
-        <main className='flex-1 flex m-auto'>
-          <Routes>
-            <Route path='/' element={<Home />} />
+      <main className='flex-1 flex m-auto'>
+        <Routes>
+          <Route path='/' element={<Home />} />
 
-            <Route path='menu'>
-              <Route index={true} element={<Menu />} />
+          <Route path='menu'>
+            <Route index={true} element={<Menu />} />
 
-              <Route path='levels' element={<Levels />} />
+            <Route path='levels' element={<Levels />} />
 
-              <Route path='options'>
-                <Route index={true} element={<Options />} />
-                <Route path='player' element={<OptionsPlayer />} />
-                <Route path='graphics' element={<OptionsGraphics />} />
-                <Route path='sound' element={<OptionsSound />} />
-              </Route>
-
-              <Route path='how' element={<HowToPlay />} />
+            <Route path='options'>
+              <Route index={true} element={<Options />} />
+              <Route path='player' element={<OptionsPlayer />} />
+              <Route path='graphics' element={<OptionsGraphics />} />
+              <Route path='sound' element={<OptionsSound />} />
             </Route>
 
-            <Route path='labyrinth/:level' element={<Labyrinth />} />
-          </Routes>
-        </main>
-        <MainMenuMusic />
-      </BrowserRouter>
+            <Route path='how' element={<HowToPlay />} />
+          </Route>
+
+          <Route path='labyrinth/:level' element={<Labyrinth />} />
+        </Routes>
+      </main>
+      <MainMenuMusic />
       <footer>FOOTER</footer>
     </div>
   )

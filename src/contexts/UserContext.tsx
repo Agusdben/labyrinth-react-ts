@@ -1,4 +1,5 @@
-import { createContext, useReducer } from 'react'
+import { createContext, useReducer, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { UserActions } from '../reducers/UserReducer/actions'
 import USER_INITIAL_STATE from '../reducers/UserReducer/userInitialState'
 import userReducer from '../reducers/UserReducer/userReducer'
@@ -25,6 +26,10 @@ const initUserState = (): User => {
 
 const UserContextProvider = ({ children }: Props) => {
   const [userState, dispatch] = useReducer(userReducer, initUserState())
+  const navigate = useNavigate()
+  useEffect(() => {
+    navigate('/')
+  }, [])
   return (
     <UserContext.Provider value={{ userState, dispatch }}>
       {children}

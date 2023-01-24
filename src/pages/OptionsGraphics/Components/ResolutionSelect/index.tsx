@@ -4,7 +4,7 @@ import useOptions from '../../../../hooks/useOptions'
 import { Dimension } from '../../../../types'
 
 const ResolutionSelect = () => {
-  const { setResolution } = useOptions()
+  const { setResolution, resolution } = useOptions()
   const handleResolution = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const { value } = e.target
     const resArr: Array<number> = value.split('x').map(val => Number(val))
@@ -14,7 +14,11 @@ const ResolutionSelect = () => {
   return (
     <div className='flex gap-2'>
       <p>Resolution:</p>
-      <select className='bg-transparent' onChange={e => handleResolution(e)}>
+      <select
+        defaultValue={`${resolution.width}x${resolution.height}`}
+        className='bg-transparent'
+        onChange={e => handleResolution(e)}
+      >
         {RESOLUTIONS.map(res => {
           const resolution: string = `${res.width}x${res.height}`
           return (
