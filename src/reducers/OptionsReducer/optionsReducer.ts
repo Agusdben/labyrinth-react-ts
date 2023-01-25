@@ -8,9 +8,8 @@ export const optionsReducer = (
 ): Options => {
   switch (action.type) {
     case 'reset':
-      return {
-        ...OPTIONS_INITIAL_STATE
-      }
+      return OPTIONS_INITIAL_STATE
+
     case 'set_player_color': {
       return { ...state, player: { color: action.payload } }
     }

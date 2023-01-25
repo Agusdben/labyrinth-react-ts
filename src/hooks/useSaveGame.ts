@@ -1,4 +1,3 @@
-import LEVELS from '../constants/levels'
 import { LocalStorage } from '../types'
 
 const useSaveGame = () => {
@@ -8,7 +7,7 @@ const useSaveGame = () => {
 
   const getSavedGame = (): number => {
     const savedGame = window.localStorage.getItem(LocalStorage.savedGame)
-    return savedGame ? Number(savedGame) : LEVELS[0].level
+    return savedGame ? Number(savedGame) : 0
   }
 
   return {

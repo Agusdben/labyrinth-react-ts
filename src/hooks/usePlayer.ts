@@ -173,6 +173,7 @@ const usePlayer = () => {
     const { labyrinth, loading } = gameState
     if (loading) return false
     const { exit } = labyrinth
+    console.log({ exit, player })
     return player.x === exit.x && player.y === exit.y
   }
 

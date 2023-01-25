@@ -8,6 +8,10 @@ const useLabyrinth = () => {
   const { gameState, dispatch } = useContext(GameContext)
   const { labyrinth } = gameState
 
+  const resetLabyrinth = () => {
+    dispatch({ type: 'reset' })
+  }
+
   const setCellDimension = () => {
     dispatch({
       type: 'set_cell',
@@ -89,7 +93,8 @@ const useLabyrinth = () => {
     drawExit,
     drawFloor,
     drawWalls,
-    drawLabyrinth
+    drawLabyrinth,
+    resetLabyrinth
   }
 }
 

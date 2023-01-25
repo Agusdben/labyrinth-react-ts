@@ -8,9 +8,7 @@ export const gameReducer = (
 ): GameState => {
   switch (action.type) {
     case 'reset':
-      return {
-        ...GAME_INITIAL_STATE
-      }
+      return GAME_INITIAL_STATE
     case 'set_labyrinth':
       return {
         ...state,
