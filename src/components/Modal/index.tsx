@@ -14,8 +14,8 @@ const Modal = ({ children, onClose, isOpen, title = '' }: Props) => {
     <Portal elementID='modal'>
       {isOpen ? (
         <section className='fixed top-0 left-0 w-screen h-screen grid place-content-center'>
-          <article className='min-w-[300px] rounded-md bg-zinc-800 relative z-10 overflow-hidden'>
-            <header className='bg-orange-300 text-zinc-900 font-bold flex justify-between items-center px-4 py-2 capitalize'>
+          <article className='min-w-[300px] rounded-md text-zinc-200 bg-zinc-900 relative z-10 overflow-hidden'>
+            <header className='ont-bold flex justify-between items-center px-4 py-2 capitalize'>
               <Subtitle>{title}</Subtitle>
               <button
                 type='button'
@@ -25,7 +25,7 @@ const Modal = ({ children, onClose, isOpen, title = '' }: Props) => {
                 <AiOutlineCloseCircle />
               </button>
             </header>
-            <div className='px-4 py-2 text-orange-300'>{children}</div>
+            <div className='px-4 py-2 '>{children}</div>
           </article>
           <button
             type='button'

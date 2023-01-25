@@ -7,14 +7,14 @@ export const LabyrinthLeyend = () => {
   const LEYEND = [
     { key: 'Player', value: playerOptions.color },
     { key: 'Exit', value: LABYRINTH_STYLES.exitColor },
-    { key: 'Wall', value: LABYRINTH_STYLES.wallColor },
+    { key: 'Walls', value: LABYRINTH_STYLES.wallColor },
     { key: 'Path', value: LABYRINTH_STYLES.pathColor }
   ]
 
   return (
-    <ul className='flex gap-2 justify-center'>
+    <ul className='flex gap-4 justify-center'>
       {LEYEND.map(l => (
-        <li className='flex gap-2 items-center' key={l.key}>
+        <li className='flex gap-1 items-center' key={l.key}>
           <div
             className='aspect-square w-4'
             style={{ backgroundColor: l.value }}

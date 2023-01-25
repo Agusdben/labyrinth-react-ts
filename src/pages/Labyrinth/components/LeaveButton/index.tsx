@@ -1,10 +1,10 @@
-import Button from '../../../../components/Button'
 import useModal from '../../../../hooks/useModal'
 import ModalLeave from '../ModalLeave'
 import { BiRun } from 'react-icons/bi'
 
 const LeaveButton = () => {
   const modal = useModal({ title: 'Leave' })
+
   return (
     <div>
       <button
