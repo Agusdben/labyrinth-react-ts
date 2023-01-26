@@ -11,11 +11,13 @@ import OptionsGraphics from './pages/OptionsGraphics'
 import OptionsSound from './pages/OptionsSound'
 import HowToPlay from './pages/HowToPlay'
 import BackgroundMusic from './components/BackgroundMusic'
+import Footer from './components/Footer'
+import Header from './components/Header'
 
 function App () {
   return (
     <div className='flex flex-col min-h-screen w-screen bg-zinc-900 text-orange-300 font-bold overflow-x-hidden'>
-      <header>HEADER</header>
+      <Header />
       <main className='flex-1 flex m-auto'>
         <Routes>
           <Route path='/' element={<Home />} />
@@ -39,7 +41,7 @@ function App () {
         </Routes>
         <BackgroundMusic />
       </main>
-      <footer>FOOTER</footer>
+      <Footer />
     </div>
   )
 }
