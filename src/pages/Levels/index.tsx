@@ -1,5 +1,4 @@
 import LEVELS from '../../constants/levels'
-import useLevel from '../../hooks/useLevel'
 import WindowContainer from '../../components/WindowContainer'
 import PageSection from '../../components/PageSection'
 import Title from '../../components/Title'
@@ -8,21 +7,14 @@ import { useState } from 'react'
 import { AiFillLock, AiOutlineCheckSquare } from 'react-icons/ai'
 import useSaveGame from '../../hooks/useSaveGame'
 import PrevWindowButton from '../../components/PrevWindowButton'
-import { useEffect } from 'react'
 
 const Levels = () => {
-  const { setLevel } = useLevel()
   const { getSavedGame } = useSaveGame()
   const [levelSelected, setLevelSelected] = useState<number>(getSavedGame())
 
   const handleLevelSelected = (level: number) => () => {
-    setLevel(level)
     setLevelSelected(level)
   }
-
-  useEffect(() => {
-    setLevel(levelSelected)
-  }, [])
 
   return (
     <PageSection>

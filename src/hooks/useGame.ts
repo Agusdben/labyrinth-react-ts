@@ -1,6 +1,8 @@
 import { useContext, useEffect, useRef } from 'react'
 import { GameContext } from '../contexts/GameContext'
+import Levels from '../pages/Levels'
 import useLabyrinth from './useLabyrinth'
+import useLevel from './useLevel'
 import useOptions from './useOptions'
 import usePlayer from './usePlayer'
 
@@ -9,6 +11,7 @@ const useGame = () => {
   const labyrinth = useLabyrinth()
   const player = usePlayer()
   const options = useOptions()
+  const level = useLevel()
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
   const setContext = (context: CanvasRenderingContext2D) => {
@@ -25,8 +28,9 @@ const useGame = () => {
   }, [gameState.board, gameState.labyrinth])
 
   useEffect(() => {
+    if (level.level === -1) return
     labyrinth.setLabyrinth()
-  }, [gameState.level])
+  }, [level.level])
 
   useEffect(() => {
     if (!canvasRef.current) return
