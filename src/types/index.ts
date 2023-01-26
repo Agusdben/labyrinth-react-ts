@@ -16,6 +16,17 @@ export interface User {
   username: string
 }
 
+export interface Song {
+  name: string
+  author: string
+  file: string
+}
+
+export interface Music {
+  currentSong: Song
+  indexInPlaylist: number
+}
+
 export enum LocalStorage {
   savedGame = 'savedGame',
   user = 'user',
@@ -26,11 +37,6 @@ export interface Modal {
   isOpen: boolean
   title: string
   handleModal: () => void
-}
-
-export interface ArrowSvgProps {
-  className?: string
-  stroke?: string
 }
 
 export interface Cords {

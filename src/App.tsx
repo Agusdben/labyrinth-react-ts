@@ -10,6 +10,7 @@ import OptionsPlayer from './pages/OptionsPlayer'
 import OptionsGraphics from './pages/OptionsGraphics'
 import OptionsSound from './pages/OptionsSound'
 import HowToPlay from './pages/HowToPlay'
+import BackgroundMusic from './components/BackgroundMusic'
 
 function App () {
   return (
@@ -36,6 +37,7 @@ function App () {
 
           <Route path='labyrinth/:level' element={<Labyrinth />} />
         </Routes>
+        <BackgroundMusic />
       </main>
       <footer>FOOTER</footer>
     </div>
