@@ -2,6 +2,8 @@ import { LocalStorage } from '../types'
 
 const useSaveGame = () => {
   const saveGame = (level: number) => {
+    const savedGame = getSavedGame()
+    if (savedGame > level) return
     window.localStorage.setItem(LocalStorage.savedGame, String(level + 1))
   }
 
