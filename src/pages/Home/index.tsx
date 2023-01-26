@@ -7,16 +7,7 @@ import UserRegistration from './Components/UserRegistration'
 
 const Home = () => {
   const { user } = useUser()
-  return (
-    <PageSection>
-      <Title>
-        <p className='text-center'></p>
-      </Title>
-      <WindowContainer>
-        {user.username ? <Portade /> : <UserRegistration />}
-      </WindowContainer>
-    </PageSection>
-  )
+  return <>{user.username ? <Portade /> : <UserRegistration />}</>
 }
 
 export default Home

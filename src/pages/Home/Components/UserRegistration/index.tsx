@@ -1,12 +1,18 @@
+import PageSection from '../../../../components/PageSection'
+import Title from '../../../../components/Title'
 import UserForm from '../../../../components/UserForm'
+import WindowContainer from '../../../../components/WindowContainer'
 import useUser from '../../../../hooks/useUser'
 
 const UserRegistration = () => {
   const { setUser } = useUser()
   return (
-    <div className='text-center'>
-      <UserForm onSubmit={setUser} />
-    </div>
+    <PageSection>
+      <Title>Register</Title>
+      <WindowContainer>
+        <UserForm onSubmit={setUser} />
+      </WindowContainer>
+    </PageSection>
   )
 }
 
