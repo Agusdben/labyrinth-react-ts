@@ -26,7 +26,7 @@ const ResolutionSelect = () => {
     <div className='flex gap-10 justify-center items-center'>
       <p>Resolution:</p>
       <select
-        defaultValue={`${resolution.width}x${resolution.height}`}
+        value={`${resolution.width}x${resolution.height}`}
         className='bg-transparent border-2 border-orange-300 px-6 py-2 hover:cursor-pointer focus:outline-none'
         onChange={e => handleResolution(e)}
       >
