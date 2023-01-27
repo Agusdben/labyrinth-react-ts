@@ -27,7 +27,6 @@ const MenuButton = ({ route, value, disabled }: Props) => {
     setTimeout(() => {
       navigate(route)
     }, clickSong.ref.current.duration * ms) // seconds -> ms
-    console.log(clickSong.ref.current.duration)
   }
 
   const handleAnimation = () => {
