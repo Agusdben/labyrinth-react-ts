@@ -27,9 +27,11 @@ const initUserState = (): User => {
 const UserContextProvider = ({ children }: Props) => {
   const [userState, dispatch] = useReducer(userReducer, initUserState())
   const navigate = useNavigate()
-  // useEffect(() => {
-  //   navigate('/')
-  // }, [])
+
+  useEffect(() => {
+    if (!userState.username) navigate('/')
+  }, [])
+
   return (
     <UserContext.Provider value={{ userState, dispatch }}>
       {children}

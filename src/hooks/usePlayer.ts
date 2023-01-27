@@ -164,6 +164,12 @@ const usePlayer = () => {
   }
 
   const handleKeyDown = (e: KeyboardEvent) => {
+    const moveDirections = Object.values(PlayerMoveDirections)
+
+    if (moveDirections.some(direction => direction === e.key)) {
+      e.preventDefault() // disable scroll with keyboard arrows
+    }
+
     if (!isInExit()) {
       handlePlayerMove(e.key)
     }
