@@ -18,7 +18,12 @@ const Levels = () => {
 
   return (
     <PageSection>
-      <Title>Levels</Title>
+      <header className='flex items-center justify-between'>
+        <Title>Levels</Title>
+        <p>
+          {getSavedGame()}/{LEVELS.length} completed
+        </p>
+      </header>
       <WindowContainer>
         <ul className='flex-1 grid grid-cols-3 gap-4 overflow-y-auto px-2'>
           {LEVELS.map(l => {
