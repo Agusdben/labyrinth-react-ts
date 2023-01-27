@@ -7,14 +7,10 @@ const PrevWindowButton = () => {
   const [prevLocation, setPrevLocation] = useState<string>('')
 
   useEffect(() => {
-    const getPrevLocation = () => {
-      const prevPathsNames = location.pathname.split('/').slice(0, -1)
-      const prevPathLocation = prevPathsNames.map((path, index) => {
-        const isLast = index === prevPathsNames.length - 1
-        return !isLast ? path + '/' : path
-      })
-
-      return prevPathLocation.join('')
+    const getPrevLocation = (): string => {
+      const locationArr = location.pathname.split('/')
+      locationArr.pop()
+      return locationArr.join('/')
     }
     setPrevLocation(getPrevLocation())
 
