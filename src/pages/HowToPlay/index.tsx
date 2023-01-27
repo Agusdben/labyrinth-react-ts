@@ -1,11 +1,33 @@
-import { useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import PageSection from '../../components/PageSection'
 import PrevWindowButton from '../../components/PrevWindowButton'
 import Title from '../../components/Title'
 import WindowContainer from '../../components/WindowContainer'
+import useOptions from '../../hooks/useOptions'
 
 const HowToPlay = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true)
+
+  const {
+    sounds: { music },
+    setMusicVolume
+  } = useOptions()
+
+  const currentMusicVol = useMemo(() => music, [])
+
+  const restoreMusicVolume = () => {
+    setMusicVolume(currentMusicVol)
+  }
+
+  const muteMusic = () => {
+    setMusicVolume(0)
+  }
+
+  useEffect(() => {
+    muteMusic()
+
+    return () => restoreMusicVolume()
+  }, [])
 
   return (
     <PageSection>
