@@ -4,7 +4,7 @@
 
 ##
 
-- 12 uniq levels col
+- 12 uniq levels
 - Player customization
 - Save game
 - Relaxing music
